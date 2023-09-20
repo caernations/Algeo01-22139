@@ -1,7 +1,8 @@
+package Operations;
 import java.util.Scanner;
 
 public class ReadMatrices {
-    public static void main(String[] args) {
+    public static double[][] Keyboard() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Masukkan ukuran n (misalnya 3 untuk matriks 3x3): ");
@@ -15,22 +16,10 @@ public class ReadMatrices {
             for (int j = 0; j < n; j++) {
                 if (scanner.hasNextDouble()) {
                     matrix[i][j] = scanner.nextDouble();
-                } else {
-                    System.out.println("Input tidak valid. Pastikan format sesuai.");
-                    return;
                 }
             }
         }
-
-        // Menampilkan matriks
-        System.out.println("Matriks yang dimasukkan:");
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.print(matrix[i][j] + " ");
-            }
-            System.out.println();
-        }
-
         scanner.close();
+        return matrix;
     }
 }
