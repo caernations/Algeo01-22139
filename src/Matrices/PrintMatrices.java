@@ -1,5 +1,4 @@
 package Matrices;
-import java.util.Scanner;
 
 public class PrintMatrices {
     public static void print(double[][] matrix) {
