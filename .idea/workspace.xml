@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5bc8fc6-240f-4374-9cb1-8ea246e1523a" name="Changes" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/src/Functions/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Matrices/ReadMatrices.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Algeo01-22139.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Algeo01-22139.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Operations/Determinan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Matrices/Determinan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Operations/ReadMatrices.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Operations/ReadMatrices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Matrices/ReadMatrices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Specifications/readme.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +46,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "jdk.selected.JAVA_MODULE": "20",
-    "last_opened_file_path": "C:/Users/PC/.vscode/Algeo01-22139",
+    "last_opened_file_path": "C:/Users/PC/.vscode/Algeo01-22139/src",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
