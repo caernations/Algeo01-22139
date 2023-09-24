@@ -7,10 +7,10 @@ public class ReadMatrices {
 
         System.out.print("Masukkan ukuran n (misalnya 3 untuk matriks 3x3): ");
         int n = scanner.nextInt();
-        
+
         double[][] matrix = new double[n][n];
 
-        System.out.println("Masukkan matriks berukuran " + n + "x" + n + " dengan elemen-elemen dipisahkan oleh spasi dan baris-baris dipisahkan oleh newline:");
+        System.out.printf("Masukkan matriks berukuran %dx%d dengan elemen-elemen dipisahkan oleh spasi dan baris-baris dipisahkan oleh newline:\n", n, n);
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
