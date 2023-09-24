@@ -1,7 +1,7 @@
 package Matrices;
 
 public class PrintMatrices {
-    public static void print(double[][] matrix) {
+    public static void Print(double[][] matrix) {
         int n = matrix.length;
 
         System.out.println();

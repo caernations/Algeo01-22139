@@ -1,7 +1,7 @@
 package Operations;
 
 public class Arithmetics {
-    public static double[][] addition(double[][] matrix1, double[][] matrix2) {
+    public static double[][] Addition(double[][] matrix1, double[][] matrix2) {
         int baris = matrix1.length;
         int kolom = matrix1[0].length;
 
@@ -20,7 +20,7 @@ public class Arithmetics {
         return result;
     }
 
-    public static double[][] subtraction(double[][] matrix1, double[][] matrix2) {
+    public static double[][] Subtraction(double[][] matrix1, double[][] matrix2) {
         int baris = matrix1.length;
         int kolom = matrix1[0].length;
 

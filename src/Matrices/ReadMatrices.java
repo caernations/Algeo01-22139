@@ -14,8 +14,14 @@ public class ReadMatrices {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (scanner.hasNextDouble()) {
-                    matrix[i][j] = scanner.nextDouble();
+                if (scanner.hasNext()) {
+                    String token = scanner.next();
+                    try {
+                        matrix[i][j] = Double.parseDouble(token);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Input is not a valid double: " + token);
+                        return null;
+                    }
                 }
             }
         }
