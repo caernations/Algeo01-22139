@@ -1,6 +1,6 @@
 package Matrices;
-import static Matrices.Determinan.hitungDeterminan;
-import static Matrices.Determinan.kofaktor;
+import static Matrices.Determinant.CalcDeterminant;
+import static Matrices.Cofactor.SingleCofactor;
 import static Matrices.Transpose.TransposeMatrix;
 
 public class Inverse {
@@ -15,9 +15,9 @@ public class Inverse {
 
         double[][] adj = new double[row][col];
 
-        for (int i=0; i<row; i++) {
+        for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                adj[i][j] = kofaktor(matrix, i, j);
+                adj[i][j] = SingleCofactor(matrix, i, j);
             }
         }
 
@@ -37,7 +37,7 @@ public class Inverse {
 
         for (int i=0; i<row; i++) {
             for (int j = 0; j < col; j++) {
-                inv[i][j] = (1/hitungDeterminan(matrix)) * temp[i][j];
+                inv[i][j] = (1 / CalcDeterminant(matrix)) * temp[i][j];
             }
         }
         return inv;
