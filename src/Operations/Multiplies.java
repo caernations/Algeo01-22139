@@ -14,9 +14,11 @@ public class Multiplies {
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < p; j++) {
-                for (int k = 0; k < n; k++) {
-                    result[i][j] += matrix1[i][k] * matrix2[k][j];
+                double temp = 0;
+                for (int k = 0; k < p; k++) {
+                    temp += matrix1[i][k] * matrix2[k][j];
                 }
+                result[i][j] = temp;
             }
         }
 
@@ -51,9 +53,11 @@ public class Multiplies {
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < p; j++) {
-                for (int k = 0; k < n; k++) {
-                    result[i][j] += (matrix1[i][k] * matrix2[k][j]) % mod;
+                double temp = 0;
+                for (int k = 0; k < p; k++) {
+                    temp += matrix1[i][k] * matrix2[k][j];
                 }
+                result[i][j] = temp % mod;
             }
         }
 
