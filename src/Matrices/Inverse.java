@@ -31,7 +31,7 @@ public class Inverse {
 
         if (CalcDeterminant(matrix) == 0) {
             System.out.println("Matriks dengan determinan 0 tidak memiliki invers");
-            return 0;
+            return matrix;
         }
 
         int row = matrix.length;
