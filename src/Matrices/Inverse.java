@@ -29,6 +29,11 @@ public class Inverse {
             throw new IllegalArgumentException("Matriks harus memiliki jumlah baris & kolom yang sama untuk mencari inverse.");
         }
 
+        if (CalcDeterminant(matrix) == 0) {
+            System.out.println("Matriks dengan determinan 0 tidak memiliki invers");
+            return 0;
+        }
+
         int row = matrix.length;
         int col = matrix[0].length;
 
