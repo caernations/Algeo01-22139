@@ -16,7 +16,7 @@ public class Echelon {
 	}
     }
 
-    public static double[][] RowEchelon(double[][] matriks) {
+    public static void SwapRowAll(double[][] matriks) {
 	int m = matriks.length;
 	int n = matriks[0].length;
 
@@ -35,30 +35,45 @@ public class Echelon {
 				}
 			}
 			if (!swapped) {
-				for (int k = i + 1; k < n; k++) {
-					if (matriks[i + 1][k] != 0) {
-						SwapRow(matriks, i, i + 1);
+				for (int p = i + 1; p < m; p++) {
+					for (int q = i; q < n; q++) {
+						if (matriks[p][q] != 0) {
+							SwapRow(matriks, p, i);
+							swapped = true;
+						}
+						if (swapped) {
+							break;
+						}
+					}
+					if (swapped) {
+						break;
 					}
 				}
 			}
 		}
 	}
+    }
+
+    public static double[][] RowEchelon(double[][] matriks) {
+	int m = matriks.length;
+	int n = matriks[0].length;
+
+	SwapRowAll(matriks);
 
 	// ini bagian untuk buat eselon baris nya
-	for (int i = 0; i < m; i++) {
+	for (int i = 0; i < n; i++) {
 		for (int j = i + 1; j < m; j++) {
-			if (matriks[j][i] != 0) {
+			if (matriks[i][i] == 0) continue;
+			else if (matriks[j][i] != 0) {
 				double koef = matriks[j][i] / matriks[i][i];
-				for (int k = i; k < n; k++) {
-					matriks[j][k] -= (matriks[i][k] * koef);
-//					System.out.println("nilai k adalah " + k + " dan koefnya " + koef);
-//					System.out.println("matriks i k nya adalah " + matriks[i][k]);
-//					System.out.println("perkalian keduanya adalah " + (koef*matriks[i][k]));
-//					PrintMatrices.Print(matriks);
+				for (int k = i; k < m; k++) {
+					matriks[j][k] -= (koef * matriks[i][k]);
 				}
 			}
 		}
 	}
+
+	SwapRowAll(matriks);
 
 	// ini bagian untuk buat 1 utama
 //	for (int i = 0; i < m; i++) {
@@ -111,11 +126,21 @@ public class Echelon {
 		}
 	}
 	
+	// bagian forward step
+	for (int i = 1; i < m; i++) {
+		for (int j = i-1; j >= 0; j--) {
+			double koef = matriks[j][i];
+			for (int k = i; k < n; k++) {
+				matriks[j][k] -= (koef * matriks[i][k]);
+			}
+		}
+	}
+
 	// bagian backward step
 	for (int i = 1; i < m; i++) {
 		for (int j = i-1; j >= 0; j--) {
 			double koef = matriks[j][i];
-			for (int k = j+1; k < n; k++) {
+			for (int k = i; k < n; k++) {
 				matriks[j][k] -= (koef * matriks[i][k]);
 			}
 		}

@@ -13,8 +13,8 @@ public class Cofactor {
         double[][] minor = new double[n - 1][n - 1];
         int minorBaris = 0;
         for (int i = 0; i < n; i++) {
-            if (i == baris) continue;
             int minorKolom = 0;
+            if (i == baris) continue;
             for (int j = 0; j < n; j++) {
                 if (j == kolom) continue;
                 minor[minorBaris][minorKolom] = matriks[i][j];
