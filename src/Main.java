@@ -1,5 +1,9 @@
 import java.util.*;
 
+import Matrices.PrintMatrices;
+import Matrices.ReadMatrices;
+import Operations.*;
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -19,7 +23,7 @@ public class Main {
                 """);
 
             System.out.print("Pilih menu: ");
-            String choice = scanner.next().toUpperCase();
+            String choice = scanner.nextLine().toUpperCase();
 
             switch (choice) {
                 case "1":
@@ -35,12 +39,22 @@ public class Main {
                             """);
 
                         System.out.print("Pilih sub-menu: ");
-                        String subChoice = scanner.next().toUpperCase();
+                        String subChoice = scanner.nextLine().toUpperCase();
 
                         switch (subChoice) {
                             case "A":
                             case "ADDITION":
-                                // Addition
+                                double[][] matrix1 = ReadMatrices.Keyboard();
+                                System.out.println("Matriks pertama:");
+                                PrintMatrices.Print(matrix1);
+
+                                double[][] matrix2 = ReadMatrices.Keyboard();
+                                System.out.println("Matriks kedua:");
+                                PrintMatrices.Print(matrix2);
+
+                                double[][] resultAddition = Arithmetics.Addition(matrix1, matrix2);
+                                System.out.println("Hasil penjumlahan matriks:");
+                                PrintMatrices.Print(resultAddition);
                                 break;
 
                             case "B":
@@ -65,7 +79,7 @@ public class Main {
                                         """);
 
                                     System.out.print("Choose: ");
-                                    String multiplyChoice = scanner.next().toUpperCase();
+                                    String multiplyChoice = scanner.nextLine().toUpperCase();
 
                                     switch (multiplyChoice) {
                                         case "I":
@@ -119,7 +133,7 @@ public class Main {
                             """);
                         
                         System.out.println("Choose: ");
-                        String splChoice = scanner.next().toUpperCase();
+                        String splChoice = scanner.nextLine().toUpperCase();
     
                         switch (splChoice) {
                             case "A":
@@ -164,7 +178,7 @@ public class Main {
                             """);
                         
                         System.out.println("Choose: ");
-                        String determinantChoice = scanner.next().toUpperCase();
+                        String determinantChoice = scanner.nextLine().toUpperCase();
 
                         switch (determinantChoice) {
                             case "A":
@@ -199,7 +213,7 @@ public class Main {
                             """);
                         
                         System.out.println("Choose: ");
-                        String inverseChoice = scanner.next().toUpperCase();
+                        String inverseChoice = scanner.nextLine().toUpperCase();
 
                         switch (inverseChoice) {
                             case "A":
@@ -240,12 +254,18 @@ public class Main {
 
                 case "8":
                 case "EXIT":
-                    System.out.println("Terima kasih! Program berakhir.");
+                    System.out.println("byeeee.");
                     System.exit(0);
 
                 default:
-                    System.out.println("Pilihan tidak valid. Silakan pilih menu (1-8) yang valid.");
+                    System.out.println("Invalid.");
             }
         }
+    }
+
+
+    public static void cls() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
     }
 }
