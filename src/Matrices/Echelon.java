@@ -23,12 +23,16 @@ public class Echelon {
 	for (int i = 0; i < m; i++) {
 		if (matriks[i][i] == 0) {
 			boolean swapped = false;
+			int j;
 			while (!swapped) {
-				for (int j = i + 1; j < m; j++) {
+				for (j = i + 1; j < m; j++) {
 					if (matriks[j][i] != 0) {
 						SwapRow(matriks, i, j);
 						swapped = true;
 					}
+				}
+				if (i == (m-1) || j == (n-1)) {
+					break;
 				}
 			}
 		}
@@ -42,6 +46,7 @@ public class Echelon {
 			}
 		}
 	}
+
         return matriks;
     }
 
