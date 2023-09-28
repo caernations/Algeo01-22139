@@ -1,5 +1,7 @@
 package Operations;
 
+
+
 public class Arithmetics {
     public static double[][] Addition(double[][] matrix1, double[][] matrix2) {
         int baris = matrix1.length;
@@ -20,6 +22,7 @@ public class Arithmetics {
         return result;
     }
 
+
     public static double[][] Subtraction(double[][] matrix1, double[][] matrix2) {
         int baris = matrix1.length;
         int kolom = matrix1[0].length;
@@ -37,5 +40,23 @@ public class Arithmetics {
         }
 
         return result;
+    }
+
+
+    public static double Trace(double[][] matrix){
+        int baris = matrix.length;
+        int kolom = matrix[0].length;
+
+        if (baris != kolom) {
+            throw new IllegalArgumentException("Matriks harus menjadi matriks persegi untuk menghitung jejak.");
+        }
+
+        double trace = 0.0;
+
+        for (int i = 0; i < baris; i++) {
+            trace += matrix[i][i];
+        }
+
+        return trace;
     }
 }

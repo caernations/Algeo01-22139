@@ -31,6 +31,9 @@ public class Main {
         PrintMatrices.Print(resultMultiplyMatrix);
         System.out.println();
 
+        double resultTraceMatrix = Arithmetics.Trace(matrix1);
+        System.out.printf("Trace matriks pertama: %.2f\n", resultTraceMatrix);
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Masukkan constant untuk perkalian dengan matriks: ");
