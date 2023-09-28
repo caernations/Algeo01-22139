@@ -7,7 +7,7 @@ public class Inverse {
 
     public static double[][] Adjoin(double[][] matrix) {
         if (matrix.length != matrix[0].length) {
-            throw new IllegalArgumentException("Matriks harus memiliki jumlah baris & kolom yang sama untuk mencari adjoint.");
+            throw new IllegalArgumentException("Matriks harus memiliki jumlah baris & kolom yang sama untuk mencari adjoin.");
         }
 
         int row = matrix.length;
@@ -24,7 +24,7 @@ public class Inverse {
         adj = TransposeMatrix(adj);
         return adj;
     }
-    public static double[][] InverseMatrix(double[][] matrix) {
+    public static double[][] Cofactor(double[][] matrix) {
         if (matrix.length != matrix[0].length) {
             throw new IllegalArgumentException("Matriks harus memiliki jumlah baris & kolom yang sama untuk mencari inverse.");
         }
@@ -47,4 +47,53 @@ public class Inverse {
         }
         return inv;
     }
+
+    public static double[][] OBE(double[][] matriks)
+    {
+        int m = matriks.length;
+        int n = matriks[0].length;
+
+        // pembuatan matriks identitas
+        double[][] identity = new double[m][n];
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j) {
+                    identity[i][j] = 1;                
+                }
+                else {
+                    identity[i][j] = 0;
+                }
+            }
+        }
+
+        // penggabungan matriks masukan dengan identitas
+        double[][] temp = new double[m][2 * n];
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                temp[i][j] = matriks[i][j];
+            }
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                temp[i][j + n] = identity[i][j];
+            }
+        }
+
+        // perhitungan invers
+        temp = Echelon.ReducedRowEchelon(temp);
+
+        double[][] hasil = new double[m][n];
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                hasil[i][j] = temp[i][j + n];
+            }
+        }
+
+        return hasil;
+    }
+
 }

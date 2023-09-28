@@ -13,12 +13,16 @@ public class Cofactor {
         double[][] minor = new double[n - 1][n - 1];
         int minorBaris = 0;
         for (int i = 0; i < n; i++) {
-            int minorKolom = 0;
+            int minorKolom = 0;            
             if (i == baris) continue;
             for (int j = 0; j < n; j++) {
                 if (j == kolom) continue;
                 minor[minorBaris][minorKolom] = matriks[i][j];
                 minorKolom++;
+//                System.out.println("nilai i adalah" + i);
+//                System.out.println("nilai j adalah" + j);
+//                System.out.println("nilai minorBaris adalah" + minorBaris);
+//                System.out.println("nilai minorKolom adalah" + minorKolom);
             }
             minorBaris++;
         }

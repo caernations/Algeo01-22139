@@ -9,7 +9,7 @@ public class Determinant {
             System.out.println("Fungsi determinan hanya dapat diaplikasikan ke matriks persegi.");
             return 0;
         }
-        
+
         if (m == 1) {
             return matriks[0][0];
         }
