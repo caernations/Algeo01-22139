@@ -8,7 +8,7 @@ public class Arithmetics {
         int kolom = matrix1[0].length;
 
         if (matrix2.length != baris || matrix2[0].length != kolom) {
-            throw new IllegalArgumentException("Matriks harus memiliki jumlah baris & kolom yang sama untuk penjumlahan.");
+            return null;
         }
 
         double[][] result = new double[baris][kolom];
@@ -28,7 +28,7 @@ public class Arithmetics {
         int kolom = matrix1[0].length;
 
         if (matrix2.length != baris || matrix2[0].length != kolom) {
-            throw new IllegalArgumentException("Matriks harus memiliki jumlah baris dan kolom yang sama untuk pengurangan.");
+            return null;
         }
 
         double[][] result = new double[baris][kolom];
@@ -48,7 +48,8 @@ public class Arithmetics {
         int kolom = matrix[0].length;
 
         if (baris != kolom) {
-            throw new IllegalArgumentException("Matriks harus menjadi matriks persegi untuk menghitung jejak.");
+            System.out.println("Matriks harus merupakan matriks persegi untuk menghitung trace.");
+            return Double.NaN;
         }
 
         double trace = 0.0;
