@@ -44,28 +44,161 @@ public class Main {
                         switch (subChoice) {
                             case "A":
                             case "ADDITION":
-                                double[][] matrix1 = ReadMatrices.Keyboard();
-                                System.out.println("Matriks pertama:");
-                                PrintMatrices.Print(matrix1);
+                                boolean additionInput = true;
+                                while (additionInput) {
+                                    System.out.println("""
+                                        i.      Keyboard Input
+                                        ii.     File Input
+                                        iii.    Back
+                                        """);
+                                    
+                                    System.out.println("Choose: ");
+                                    String additionInputChoice = scanner.nextLine().toUpperCase();
 
-                                double[][] matrix2 = ReadMatrices.Keyboard();
-                                System.out.println("Matriks kedua:");
-                                PrintMatrices.Print(matrix2);
+                                    switch (additionInputChoice){
+                                        case "I":
+                                        case "KEYBOARD INPUT":
+                                            double[][] matrixA1 = ReadMatrices.Keyboard();
+                                            System.out.println("Matriks pertama:");
+                                            PrintMatrices.Print(matrixA1);
+        
+                                            double[][] matrixA2 = ReadMatrices.Keyboard();
+                                            System.out.println("Matriks kedua:");
+                                            PrintMatrices.Print(matrixA2);
+        
+                                            if (matrixA1.length == matrixA2.length && matrixA1[0].length == matrixA2[0].length) {
+                                                double[][] resultAddition = Arithmetics.Addition(matrixA1, matrixA2);
+                                                if (resultAddition != null) {
+                                                    System.out.println("Hasil penjumlahan matriks:");
+                                                    PrintMatrices.Print(resultAddition);
+                                                } else {
+                                                    System.out.println("Jumlah baris dan kolom matriks tidak sama. Penjumlahan tidak dapat dilakukan.");
+                                                }
+                                            } else {
+                                                System.out.println("Jumlah baris dan kolom matriks tidak sama. Penjumlahan tidak dapat dilakukan.");
+                                            }
+                                            
+                                            break;
 
-                                double[][] resultAddition = Arithmetics.Addition(matrix1, matrix2);
-                                System.out.println("Hasil penjumlahan matriks:");
-                                PrintMatrices.Print(resultAddition);
+                                        case "II":
+                                        case "FILE INPUT":
+                                            break;
+
+                                        case "III":
+                                        case "BACK":
+                                            additionInput = false;
+                                            break; 
+
+                                        default:
+                                            System.out.println("Invalid.");
+
+                                    }
+                                }
                                 break;
 
                             case "B":
                             case "SUBTRACTION":
-                                // Substraction
+                                boolean subtractionInput = true;
+                                while (subtractionInput) {
+                                    System.out.println("""
+                                        i.      Keyboard Input
+                                        ii.     File Input
+                                        iii.    Back
+                                        """);
+                                    
+                                    System.out.println("Choose: ");
+                                    String subtractionInputChoice = scanner.nextLine().toUpperCase();
+
+                                    switch (subtractionInputChoice){
+                                        case "I":
+                                        case "KEYBOARD INPUT":
+                                            double[][] matrixB1 = ReadMatrices.Keyboard();
+                                            System.out.println("Matriks pertama:");
+                                            PrintMatrices.Print(matrixB1);
+        
+                                            double[][] matrixB2 = ReadMatrices.Keyboard();
+                                            System.out.println("Matriks kedua:");
+                                            PrintMatrices.Print(matrixB2);
+        
+                                            if (matrixB1.length == matrixB2.length && matrixB1[0].length == matrixB2[0].length) {
+                                                double[][] resultSubtraction = Arithmetics.Subtraction(matrixB1, matrixB2);
+                                                if (resultSubtraction != null) {
+                                                    System.out.println("Hasil pengurangan matriks:");
+                                                    PrintMatrices.Print(resultSubtraction);
+                                                } else {
+                                                    System.out.println("Jumlah baris dan kolom matriks tidak sama. Pengurangan tidak dapat dilakukan.");
+                                                }
+                                            } else {
+                                                System.out.println("Jumlah baris dan kolom matriks tidak sama. Pengurangan tidak dapat dilakukan.");
+                                            }
+
+                                            break;
+
+                                        case "II":
+                                        case "FILE INPUT":
+                                            break;
+                                        
+                                        case "III":
+                                        case "BACK":
+                                            subtractionInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+
+                                    }
+                                }
                                 break;
 
                             case "C":
-                            case "TRACE":
-                                // Trace
-                                break;
+                            case "TRACE": 
+                                boolean traceInput = true;
+                                while (traceInput) {
+                                    System.out.println("""
+                                        i.      Keyboard Input
+                                        ii.     File Input
+                                        iii.    Back
+                                        """);
+                                    
+                                    System.out.println("Choose: ");
+                                    String traceInputChoice = scanner.nextLine().toUpperCase();
+
+                                    switch (traceInputChoice){
+                                        case "I":
+                                        case "KEYBOARD INPUT":
+                                            double[][] matrixC = ReadMatrices.Keyboard();
+                                            System.out.println("Matriks pertama:");
+                                            PrintMatrices.Print(matrixC);
+        
+                                            if (matrixC.length == matrixC[0].length) {
+                                                double trace = Arithmetics.Trace(matrixC);
+                            
+                                                if (!Double.isNaN(trace)) {
+                                                    System.out.println("Trace dari matriks adalah: " + trace);
+                                                } else {
+                                                    System.out.println("Matriks harus merupakan matriks persegi untuk menghitung trace.");
+                                                }
+                                            } else {
+                                                System.out.println("Matriks harus merupakan matriks persegi untuk menghitung trace.");
+                                            }
+
+                                            break;
+
+                                        case "II":
+                                        case "FILE INPUT":
+                                            break;
+                                        
+                                        case "III":
+                                        case "BACK":
+                                            subtractionInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+
+                                    }
+                                }
+                                break;                             
 
                             case "D":
                             case "MULTIPLY MATRICES":
