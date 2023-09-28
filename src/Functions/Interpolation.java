@@ -34,12 +34,11 @@ public class Interpolation {
 		System.out.println();
 	}
 
-	public static void BicubicSpline(double[][] input) {
+	public static void BicubicSpline(double[][] input, double a, double b) {
 		// input matriksnya berbentuk double[4][4]
 		// dari kiri ke kanan urutan tiitknya adalah (0,0), (1,0), (0,1), (1,1)
 		// dari atas ke bawah urutannya adalah nilai original, nilai turunan di x, nilai turunan di y, nilai turunan di keduanya
-
-		Scanner scanner = new Scanner(System.in);
+		// a dan b adalah titik yg ingin di taksir (a itu x dan b itu y)
 
 		double[][] matriks = new double[16][16];
 
@@ -56,19 +55,19 @@ public class Interpolation {
 								matriks[idxY][idxX] = Math.pow(x, i) * Math.pow(y, j);
 							}
 							else if (idxY < 8) {
-								if (i == 0) {
-									matriks[idxY][idxX] = 0;
-								}
-								else {
-									matriks[idxY][idxX] = i * Math.pow(x, i - 1) * Math.pow(y, j);
-								}
-							}
-							else if (idxY < 12) {
 								if (j == 0) {
 									matriks[idxY][idxX] = 0;
 								}
 								else {
 									matriks[idxY][idxX] = j * Math.pow(x, i) * Math.pow(y, j - 1);
+								}
+							}
+							else if (idxY < 12) {
+								if (i == 0) {
+									matriks[idxY][idxX] = 0;
+								}
+								else {
+									matriks[idxY][idxX] = i * Math.pow(x, i - 1) * Math.pow(y, j);
 								}
 							}
 							else {
@@ -96,13 +95,9 @@ public class Interpolation {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				nilai[idx][0] = input[i][j];
+				idx++;
 			}
 		}
-
-		System.out.println("Masukkan titik yang ingin ditaksir: (format: x y)");
-
-		double a = scanner.nextDouble();
-		double b = scanner.nextDouble();
 
 		double hasil = 0;
 
