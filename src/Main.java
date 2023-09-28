@@ -217,7 +217,17 @@ public class Main {
                                     switch (multiplyChoice) {
                                         case "I":
                                         case "MULTIPLY MATRICES":
-                                            // MultiplyMatrices
+                                            double[][] matrixD1 = ReadMatrices.Keyboard();
+                                            System.out.println("Matriks pertama:");
+                                            PrintMatrices.Print(matrixD1);
+        
+                                            double[][] matrixD2 = ReadMatrices.Keyboard();
+                                            System.out.println("Matriks kedua:");
+                                            PrintMatrices.Print(matrixD2);
+
+                                            double[][] resultMultiplyMatrix = Multiplies.MultiplyMatrix(matrixD1, matrixD2);
+                                            System.out.println("Hasil perkalian matriks: ");
+                                            PrintMatrices.Print(resultMultiplyMatrix);
                                             break;
 
                                         case "II":
