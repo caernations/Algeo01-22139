@@ -5,24 +5,24 @@ public class Multiplies {
         int m = matrix1.length;
         int n = matrix1[0].length;
         int p = matrix2[0].length;
-
+    
         if (n != matrix2.length) {
             throw new IllegalArgumentException("Jumlah kolom matriks pertama harus sama dengan jumlah baris matriks kedua untuk perkalian matriks.");
         }
-
+    
         double[][] result = new double[m][p];
-
+    
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < p; j++) {
                 double temp = 0;
-                for (int k = 0; k < p; k++) {
+                for (int k = 0; k < n; k++) { // Menggunakan 'n' untuk perulangan ketiga
                     temp += matrix1[i][k] * matrix2[k][j];
                 }
                 result[i][j] = temp;
             }
         }
-
-        return result;
+    
+        return result; 
     }
 
     public static double[][] MultiplyMatrixByConstant(double[][] matrix, double constant) {
