@@ -217,28 +217,130 @@ public class Main {
                                     switch (multiplyChoice) {
                                         case "I":
                                         case "MULTIPLY MATRICES":
-                                            double[][] matrixD1 = ReadMatrices.Keyboard();
-                                            System.out.println("Matriks pertama:");
-                                            PrintMatrices.Print(matrixD1);
-        
-                                            double[][] matrixD2 = ReadMatrices.Keyboard();
-                                            System.out.println("Matriks kedua:");
-                                            PrintMatrices.Print(matrixD2);
+                                            boolean iMultiplyInput = true;
+                                            while (iMultiplyInput) {
+                                                System.out.println("""
+                                                    i.      Keyboard Input
+                                                    ii.     File Input
+                                                    iii.    Back
+                                                    """);
+                                                System.out.println("Choose: ");
+                                                String iMultiplyInputChoice = scanner.nextLine().toUpperCase();
 
-                                            double[][] resultMultiplyMatrix = Multiplies.MultiplyMatrix(matrixD1, matrixD2);
-                                            System.out.println("Hasil perkalian matriks: ");
-                                            PrintMatrices.Print(resultMultiplyMatrix);
-                                            break;
+                                                switch (iMultiplyInputChoice){
+                                                    case "I":
+                                                    case "KEYBOARD INPUT":
+                                                        double[][] matrixiD1 = ReadMatrices.Keyboard();
+                                                        double[][] matrixiD2 = ReadMatrices.Keyboard();
+                                                        
+                                                        double[][] resultMultiplyMatrix = Multiplies.MultiplyMatrix(matrixiD1, matrixiD2);
+                                                    
+                                                        if (resultMultiplyMatrix == null) {
+                                                            System.out.println("Error: Jumlah kolom matriks pertama tidak sama dengan jumlah baris matriks kedua.");
+                                                        } else {
+                                                            System.out.println("Matriks pertama:");
+                                                            PrintMatrices.Print(matrixiD1);
+                                                    
+                                                            System.out.println("Matriks kedua:");
+                                                            PrintMatrices.Print(matrixiD2);
+                                                    
+                                                            System.out.println("Hasil perkalian matriks: ");
+                                                            PrintMatrices.Print(resultMultiplyMatrix);
+                                                        }
+                                                        break;
+                                                    
+                                                    case "II":
+                                                    case "FILE INPUT":
+                                                    case "III":
+                                                    case "BACK":
+                                                }
+                                            }
 
                                         case "II":
                                         case "MULTIPLY MATRICES BY CONSTANT":
-                                            // MultiplyMatricesByConstant
+                                            boolean iiMultiplyInput = true;
+                                            while (iiMultiplyInput) {
+                                                System.out.println("""
+                                                    i.      Keyboard Input
+                                                    ii.     File Input
+                                                    iii.    Back
+                                                    """);
+                                                System.out.println("Choose: ");
+                                                String iiMultiplyInputChoice = scanner.nextLine().toUpperCase();
+                                                switch (iiMultiplyInputChoice){
+                                                    case "I":
+                                                    case "KEYBOARD INPUT":
+                                                        double[][] matrixiiD1 = ReadMatrices.Keyboard();
+
+                                                        System.out.println("Constanta: ");
+                                                        double constant = scanner.nextDouble();
+                                                        scanner.nextLine();
+                                                        
+                                                        double[][] resultMultiplyMatrixByConstant = Multiplies.MultiplyMatrixByConstant(matrixiiD1, constant);
+
+                                                        System.out.println("Result:");
+                                                        PrintMatrices.Print(resultMultiplyMatrixByConstant);
+                                                        break;
+
+                                                    case "II":
+                                                    case "FILE INPUT":
+                                                        break;
+
+                                                    case "III":
+                                                    case "BACK":
+                                                        iiMultiplyInput = false;
+                                                        break;
+                                                }
+                                            }
                                             break;
 
+
                                         case "III":
-                                        case "MULTIPLY MATRICES WITH MOD":
-                                            // MultiplyMatricesWithMod
+                                        case "MULTIPLY MATRIX WITH MOD":
+                                            boolean iiiMultiplyInput = true;
+                                            while (iiiMultiplyInput) {
+                                                System.out.println("""
+                                                    i.      Keyboard Input
+                                                    ii.     File Input
+                                                    iii.    Back
+                                                    """);
+
+                                                System.out.println("Choose: ");
+                                                String iiiMultiplyInputChoice = scanner.nextLine().toUpperCase();
+
+                                                switch (iiiMultiplyInputChoice){
+                                                    case "I":
+                                                    case "KEYBOARD INPUT":
+                                                        double[][] matrix1 = ReadMatrices.Keyboard();
+                                                        double[][] matrix2 = ReadMatrices.Keyboard();
+
+                                                        System.out.println("Enter the mod value: ");
+                                                        double mod = scanner.nextDouble();
+                                                        scanner.nextLine();
+
+                                                        if (matrix1[0].length != matrix2.length) {
+                                                            System.out.println("Error: Jumlah kolom matriks pertama tidak sama dengan jumlah baris matriks kedua.");
+                                                        } else {
+                                                            double[][] resultMultiplyMatrixWithMod = Multiplies.MultiplyMatrixWithMod(matrix1, matrix2, mod);
+
+                                                            System.out.println("Result:");
+                                                            PrintMatrices.Print(resultMultiplyMatrixWithMod);
+                                                        }
+                                                        break;
+
+                                                    case "II":
+                                                    case "FILE INPUT":
+
+                                                        break;
+
+                                                    case "III":
+                                                    case "BACK":
+                                                        iiiMultiplyInput = false;
+                                                        break;
+                                                }
+                                            }
                                             break;
+
 
                                         case "IV":
                                         case "BACK":
