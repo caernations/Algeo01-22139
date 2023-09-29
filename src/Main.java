@@ -1,5 +1,6 @@
 import java.util.*;
 
+import Matrices.MatricesIO;
 import Matrices.PrintMatrices;
 import Matrices.ReadMatrices;
 import Operations.*;
@@ -61,27 +62,74 @@ public class Main {
                                             double[][] matrixA1 = ReadMatrices.Keyboard();
                                             System.out.println("Matriks pertama:");
                                             PrintMatrices.Print(matrixA1);
-        
+
                                             double[][] matrixA2 = ReadMatrices.Keyboard();
                                             System.out.println("Matriks kedua:");
                                             PrintMatrices.Print(matrixA2);
-        
+
                                             if (matrixA1.length == matrixA2.length && matrixA1[0].length == matrixA2[0].length) {
                                                 double[][] resultAddition = Arithmetics.Addition(matrixA1, matrixA2);
                                                 if (resultAddition != null) {
                                                     System.out.println("Hasil penjumlahan matriks:");
                                                     PrintMatrices.Print(resultAddition);
+
+                                                    System.out.print("Apakah Anda ingin menyimpan hasil penjumlahan matriks? (Y/N): ");
+                                                    String saveChoice = scanner.nextLine().toUpperCase();
+                                                    if (saveChoice.equals("Y")) {
+                                                        System.out.print("Masukkan nama file output: ");
+                                                        String outputFileName = scanner.nextLine();
+                                                        MatricesIO.SaveMatrixToFile(resultAddition, outputFileName);
+                                                        System.out.println("Hasil penjumlahan matriks telah disimpan ke dalam file " + outputFileName);
+                                                    }
                                                 } else {
                                                     System.out.println("Jumlah baris dan kolom matriks tidak sama. Penjumlahan tidak dapat dilakukan.");
                                                 }
                                             } else {
                                                 System.out.println("Jumlah baris dan kolom matriks tidak sama. Penjumlahan tidak dapat dilakukan.");
                                             }
-                                            
+
                                             break;
+
 
                                         case "II":
                                         case "FILE INPUT":
+                                            System.out.print("Masukkan nama file matriks pertama: ");
+                                            String inputFileName1 = scanner.nextLine();
+                                            double[][] matrixA1ii = MatricesIO.FileToMatrix(inputFileName1);
+                                        
+                                            System.out.print("Masukkan nama file matriks kedua: ");
+                                            String inputFileName2 = scanner.nextLine();
+                                            double[][] matrixA2ii = MatricesIO.FileToMatrix(inputFileName2);
+                                        
+                                            if (matrixA1ii != null && matrixA2ii != null) {
+                                                System.out.println("Matriks pertama dari file:");
+                                                PrintMatrices.Print(matrixA1ii);
+                                        
+                                                System.out.println("Matriks kedua dari file:");
+                                                PrintMatrices.Print(matrixA2ii);
+                                        
+                                                if (matrixA1ii.length == matrixA2ii.length && matrixA1ii[0].length == matrixA2ii[0].length) {
+                                                    double[][] resultAddition = Arithmetics.Addition(matrixA1ii, matrixA2ii);
+                                                    if (resultAddition != null) {
+                                                        System.out.println("Hasil penjumlahan matriks:");
+                                                        PrintMatrices.Print(resultAddition);
+                                        
+                                                        System.out.print("Apakah Anda ingin menyimpan hasil penjumlahan matriks? (Y/N): ");
+                                                        String saveChoice = scanner.nextLine().toUpperCase();
+                                                        if (saveChoice.equals("Y")) {
+                                                            System.out.print("Masukkan nama file output: ");
+                                                            String outputFileName = scanner.nextLine();
+                                                            MatricesIO.SaveMatrixToFile(resultAddition, outputFileName);
+                                                        }
+                                                    } else {
+                                                        System.out.println("Jumlah baris dan kolom matriks tidak sama. Penjumlahan tidak dapat dilakukan.");
+                                                    }
+                                                } else {
+                                                    System.out.println("Jumlah baris dan kolom matriks tidak sama. Penjumlahan tidak dapat dilakukan.");
+                                                }
+                                            } else {
+                                                System.out.println("File input tidak dapat dibaca atau matriks tidak valid.");
+                                            }
                                             break;
 
                                         case "III":
