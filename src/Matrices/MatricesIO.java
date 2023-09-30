@@ -27,7 +27,7 @@ public class MatricesIO {
 
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++) {
-                    writer.write(matrix[i][j] + "\t");
+                    writer.write(matrix[i][j] + " ");
                 }
                 writer.write("\n");
             }
@@ -39,11 +39,17 @@ public class MatricesIO {
         }
     }
 
+    
     public static double[][] FileToMatrix(String filename) {
         try {
             String inputFileName = "../test/" + filename + ".txt";
 
             File file = new File(inputFileName);
+
+            if (!file.exists()) {
+                System.out.println("File not found: " + inputFileName);
+                return null;
+            }
 
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
@@ -52,7 +58,7 @@ public class MatricesIO {
 
             while ((line = br.readLine()) != null) {
                 rows++;
-                String[] values = line.split("\t");
+                String[] values = line.split(" ");
                 cols = values.length;
             }
 
@@ -64,9 +70,14 @@ public class MatricesIO {
             int row = 0;
 
             while ((line = br.readLine()) != null) {
-                String[] values = line.split("\t");
+                String[] values = line.split(" ");
                 for (int col = 0; col < cols; col++) {
-                    matrix[row][col] = Double.parseDouble(values[col]);
+                    try {
+                        matrix[row][col] = Double.parseDouble(values[col]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error: Data in the file is not a valid double.");
+                        return null;
+                    }
                 }
                 row++;
             }
