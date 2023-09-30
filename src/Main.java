@@ -22,7 +22,8 @@ public class Main {
                 7. Multiple Linear Regression
                 8. Exit
                 """);
-
+            pause();
+            cls();
             System.out.print("Pilih menu: ");
             String choice = scanner.nextLine().toUpperCase();
 
@@ -556,9 +557,19 @@ public class Main {
         }
     }
 
-
     public static void cls() {  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }
+    
+    public static void pause() {
+        System.out.print("Press Enter to continue...");
+        try {
+            System.in.read(); 
+            System.in.skip(System.in.available()); 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 }
