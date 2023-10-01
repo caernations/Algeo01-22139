@@ -1,7 +1,7 @@
 package Functions;
 import Matrices.*;
 import Operations.*;
-import java.util.Arrays;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Regression {
@@ -55,9 +55,11 @@ public class Regression {
         B = Multiplies.MultiplyMatrix(XtX_Inv, XtY);
 
         //Y = b0 + b1 X1 + b2 X2
-        System.out.print("Y = " + Arrays.toString(B[0]).replace("[", "").replace("]", ""));
+        DecimalFormat df = new DecimalFormat("0.00");
+        System.out.print(df.format(B[0][0])+ "b0");
         for (int i = 1; i < n + 1; i++) {
-            System.out.print(" + " + Arrays.toString(B[i]).replace("[", "").replace("]", "") + " X" + i);
+            System.out.print(" + " + df.format(B[i][0]) + "b" + i);
         }
+        System.out.print(" = Y");
     }
 }
