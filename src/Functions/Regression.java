@@ -1,9 +1,19 @@
 package Functions;
+import Matrices.*;
 import java.text.DecimalFormat;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Regression {
+    public static void AppendRegresi(double[][] result, double[][] B, double sumY, int persrow, int n) {
+        //Print persamaan regresi (satu baris)
+        DecimalFormat df = new DecimalFormat("#.####");
+        for (int i = 0; i < n; i++) {
+            result[persrow][i] = B[i][0];
+        }
+        result[persrow][n] = sumY;
+    }
+
     public static void PrintRegresi(double[][] B, double sumY, int persrow, int n) {
         //Print persamaan regresi (satu baris)
         DecimalFormat df = new DecimalFormat("#.####");
@@ -25,6 +35,7 @@ public class Regression {
         int m = scanner.nextInt();
 
         double[][] matrix = new double[m][n + 1];
+        double[][] result = new double[n+1][n+1];
         double[][] X = new double[m][n + 1];
         double[][] Y = new double[m][1];
 
@@ -65,8 +76,8 @@ public class Regression {
                     }
                     sumY += Y[p][0];
                 }
+                AppendRegresi(result, B, sumY, persrow, n);
                 PrintRegresi(B, sumY, persrow, n);
-
             } else {
                 for (int i = 0; i < m; i++) {
                     B[0][0] += X[i][persrow];
@@ -77,8 +88,13 @@ public class Regression {
                         B[q][0] += X[p][persrow] * X[p][q];
                     }
                 }
+                AppendRegresi(result, B, sumY, persrow, n);
                 PrintRegresi(B, sumY, persrow, n);
             }
         }
+
+        //Print Result
+        PrintMatrices.Print(result);
+        SPL.Gauss(result);
     }
 }
