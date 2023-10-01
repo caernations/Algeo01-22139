@@ -22,10 +22,12 @@ public class Main {
                 7. Multiple Linear Regression
                 8. Exit
                 """);
-            pause();
-            cls();
+
             System.out.print("Pilih menu: ");
             String choice = scanner.nextLine().toUpperCase();
+
+            pause();
+            cls();
 
             switch (choice) {
                 case "1":
@@ -43,6 +45,9 @@ public class Main {
                         System.out.print("Pilih sub-menu: ");
                         String subChoice = scanner.nextLine().toUpperCase();
 
+                        pause();
+                        cls();
+
                         switch (subChoice) {
                             case "A":
                             case "ADDITION":
@@ -57,6 +62,9 @@ public class Main {
                                     System.out.println("Choose: ");
                                     String additionInputChoice = scanner.nextLine().toUpperCase();
 
+                                    pause();
+                                    cls();
+                                    
                                     switch (additionInputChoice){
                                         case "I":
                                         case "KEYBOARD INPUT":
