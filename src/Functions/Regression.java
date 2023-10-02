@@ -1,8 +1,5 @@
 package Functions;
-import Matrices.*;
 import java.text.DecimalFormat;
-import java.util.Locale;
-import java.util.Scanner;
 
 public class Regression {
     public static void AppendRegresi(double[][] result, double[][] B, double sumY, int persrow, int n) {
