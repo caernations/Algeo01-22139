@@ -1,5 +1,7 @@
 import java.util.*;
 
+import javax.swing.plaf.PanelUI;
+
 import Matrices.MatricesIO;
 import Matrices.PrintMatrices;
 import Matrices.ReadMatrices;
@@ -8,22 +10,44 @@ import Operations.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println();
+        System.out.println("""
+            
+        █▀▄▀█ ▄▀█ ▀█▀ █▀█ █ █▀▀ █▀▀ █▀
+        █░▀░█ █▀█ ░█░ █▀▄ █ █▄▄ ██▄ ▄█
 
-        System.out.println("Welcome\n");
+        █▀▀ ▄▀█ █░░ █▀▀ █░█ █░░ ▄▀█ ▀█▀ █▀█ █▀█
+        █▄▄ █▀█ █▄▄ █▄▄ █▄█ █▄▄ █▀█ ░█░ █▄█ █▀▄
+
+            ▐▓█▀▀▀▀▀▀▀▀▀█▓▌░▄▄▄▄▄░
+            ▐▓█░░▀░░▀▄░░█▓▌░█▄▄▄█░
+            ▐▓█░░▄░░▄▀░░█▓▌░█▄▄▄█░
+            ▐▓█▄▄▄▄▄▄▄▄▄█▓▌░█████░
+            ░░░░▄▄███▄▄░░░░░█████░
+                """);
+        System.out.println("═════════════════════════════════════════\n\n");
+
 
         while (true) {
             System.out.println("""
-                1. Matrices Operations
-                2. System of Linear Equations
-                3. Matrices Determinant
-                4. Matrices Inverse
-                5. Polinomial Interpolation
-                6. Bicubic Spline Interpolation
-                7. Multiple Linear Regression
-                8. Exit
+
+                █▀▄▀█ █▀▀ █▄░█ █░█ ▀
+                █░▀░█ ██▄ █░▀█ █▄█ ▄
+
+                """);
+            System.out.println("""
+                ░ 1. Matrices Operations
+                ░ 2. System of Linear Equations
+                ░ 3. Matrices Determinant
+                ░ 4. Matrices Inverse
+                ░ 5. Polinomial Interpolation
+                ░ 6. Bicubic Spline Interpolation
+                ░ 7. Multiple Linear Regression
+                ░ 8. Help
+                ░ 9. Exit
                 """);
 
-            System.out.print("Pilih menu: ");
+            System.out.print("░ >> Choose menu: ");
             String choice = scanner.nextLine().toUpperCase();
 
             pause();
@@ -35,61 +59,99 @@ public class Main {
                     boolean matricesMenu = true;
                     while (matricesMenu) {
                         System.out.println("""
-                            a. Addition
-                            b. Subtraction
-                            c. Trace
-                            d. Multiply
-                            e. Back
+                            
+                            █▀█ █▀█ █▀▀ █▀█ ▄▀█ ▀█▀ █ █▀█ █▄░█ █▀
+                            █▄█ █▀▀ ██▄ █▀▄ █▀█ ░█░ █ █▄█ █░▀█ ▄█
+
+
+                            ░ 1. Addition (+)
+                            ░ 2. Subtraction (-)
+                            ░ 3. Trace (tr)
+                            ░ 4. Multiply (*)
+                            ░ 5. Back
                             """);
 
-                        System.out.print("Pilih sub-menu: ");
+                        System.out.print("░ >> Choose operation: ");
                         String subChoice = scanner.nextLine().toUpperCase();
 
                         pause();
                         cls();
 
                         switch (subChoice) {
-                            case "A":
+                            case "1":
+                            case "+":
                             case "ADDITION":
                                 boolean additionInput = true;
                                 while (additionInput) {
                                     System.out.println("""
-                                        i.      Keyboard Input
-                                        ii.     File Input
-                                        iii.    Back
+                                        
+                                        ▄▀█ █▀▄ █▀▄ █ ▀█▀ █ █▀█ █▄░█
+                                        █▀█ █▄▀ █▄▀ █ ░█░ █ █▄█ █░▀█
+
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
                                         """);
                                     
-                                    System.out.println("Choose: ");
+                                    System.out.print("░ >> Choose: ");
                                     String additionInputChoice = scanner.nextLine().toUpperCase();
 
                                     pause();
                                     cls();
                                     
                                     switch (additionInputChoice){
-                                        case "I":
-                                        case "KEYBOARD INPUT":
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+                                                ─────────────────────
+                                                ░  M A T R I X  1 : ░
+                                                ─────────────────────
+                                                """);
                                             double[][] matrixA1 = ReadMatrices.Keyboard();
-                                            System.out.println("Matriks pertama:");
-                                            PrintMatrices.Print(matrixA1);
-
+                                            System.out.println("""
+                                                \n
+                                                ─────────────────────
+                                                ░  M A T R I X  2 : ░
+                                                ─────────────────────
+                                                """);
                                             double[][] matrixA2 = ReadMatrices.Keyboard();
-                                            System.out.println("Matriks kedua:");
-                                            PrintMatrices.Print(matrixA2);
 
                                             if (matrixA1.length == matrixA2.length && matrixA1[0].length == matrixA2[0].length) {
                                                 double[][] resultAddition = Arithmetics.Addition(matrixA1, matrixA2);
                                                 if (resultAddition != null) {
-                                                    System.out.println("Hasil penjumlahan matriks:");
+                                                    System.out.print("""
+                                                        \n
+                                                        ────────────────────────────
+                                                        ░         H A S I L        ░
+                                                        ░  P E N J U M L A H A N : ░
+                                                        ────────────────────────────
+                                                        """);
                                                     PrintMatrices.Print(resultAddition);
 
-                                                    System.out.print("Apakah Anda ingin menyimpan hasil penjumlahan matriks? (Y/N): ");
+                                                    pause();
+
+                                                    System.out.println("""
+
+
+                                                        █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                        ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                        """);
+                                                    System.out.print(">> ");
                                                     String saveChoice = scanner.nextLine().toUpperCase();
-                                                    if (saveChoice.equals("Y")) {
-                                                        System.out.print("Masukkan nama file output: ");
+                                                    if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                        System.out.print(">> Save as: ");
                                                         String outputFileName = scanner.nextLine();
                                                         MatricesIO.SaveMatrixToFile(resultAddition, outputFileName);
-                                                        System.out.println("Hasil penjumlahan matriks telah disimpan ke dalam file " + outputFileName);
+                                                        System.out.println(">> Saved as " + outputFileName + "!\n");
                                                     }
+
+                                                    pause();
+                                                    cls();
+
                                                 } else {
                                                     System.out.println("Jumlah baris dan kolom matriks tidak sama. Penjumlahan tidak dapat dilakukan.");
                                                 }
@@ -100,8 +162,8 @@ public class Main {
                                             break;
 
 
-                                        case "II":
-                                        case "FILE INPUT":
+                                        case "2":
+                                        case "FILE":
                                             System.out.print("Masukkan nama file matriks pertama: ");
                                             String inputFileName1 = scanner.nextLine();
                                             double[][] matrixA1ii = MatricesIO.FileToMatrix(inputFileName1);
@@ -141,7 +203,7 @@ public class Main {
                                             }
                                             break;
 
-                                        case "III":
+                                        case "3":
                                         case "BACK":
                                             additionInput = false;
                                             break; 
@@ -153,21 +215,33 @@ public class Main {
                                 }
                                 break;
 
-                            case "B":
+                            case "2":
+                            case "-":
                             case "SUBTRACTION":
                                 boolean subtractionInput = true;
                                 while (subtractionInput) {
                                     System.out.println("""
-                                        i.      Keyboard Input
-                                        ii.     File Input
-                                        iii.    Back
+
+                                        █▀ █░█ █▄▄ ▀█▀ █▀█ ▄▀█ █▀▀ ▀█▀ █ █▀█ █▄░█
+                                        ▄█ █▄█ █▄█ ░█░ █▀▄ █▀█ █▄▄ ░█░ █ █▄█ █░▀█
+
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
                                         """);
                                     
-                                    System.out.println("Choose: ");
+                                    System.out.print("░ >> Choose: ");
                                     String subtractionInputChoice = scanner.nextLine().toUpperCase();
 
+                                    pause();
+                                    cls();
+
                                     switch (subtractionInputChoice){
-                                        case "I":
+                                        case "1":
                                         case "KEYBOARD INPUT":
                                             double[][] matrixB1 = ReadMatrices.Keyboard();
                                             System.out.println("Matriks pertama:");
@@ -191,11 +265,11 @@ public class Main {
 
                                             break;
 
-                                        case "II":
+                                        case "2":
                                         case "FILE INPUT":
                                             break;
                                         
-                                        case "III":
+                                        case "3":
                                         case "BACK":
                                             subtractionInput = false;
                                             break;
@@ -207,21 +281,33 @@ public class Main {
                                 }
                                 break;
 
-                            case "C":
+                            case "3":
+                            case "tr":
                             case "TRACE": 
                                 boolean traceInput = true;
                                 while (traceInput) {
                                     System.out.println("""
-                                        i.      Keyboard Input
-                                        ii.     File Input
-                                        iii.    Back
+
+                                        ▀█▀ █▀█ ▄▀█ █▀▀ █▀▀
+                                        ░█░ █▀▄ █▀█ █▄▄ ██▄
+
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
                                         """);
                                     
-                                    System.out.println("Choose: ");
+                                    System.out.print("░ >> Choose: ");
                                     String traceInputChoice = scanner.nextLine().toUpperCase();
 
+                                    pause();
+                                    cls();
+
                                     switch (traceInputChoice){
-                                        case "I":
+                                        case "1":
                                         case "KEYBOARD INPUT":
                                             double[][] matrixC = ReadMatrices.Keyboard();
                                             System.out.println("Matriks pertama:");
@@ -241,13 +327,13 @@ public class Main {
 
                                             break;
 
-                                        case "II":
+                                        case "2":
                                         case "FILE INPUT":
                                             break;
                                         
-                                        case "III":
+                                        case "3":
                                         case "BACK":
-                                            subtractionInput = false;
+                                            traceInput = false;
                                             break;
 
                                         default:
@@ -257,75 +343,118 @@ public class Main {
                                 }
                                 break;                             
 
-                            case "D":
+                            case "4":
+                            case "*":
                             case "MULTIPLY MATRICES":
                                 boolean multiplyMenu = true;
                                 while (multiplyMenu) {
                                     System.out.println("""
-                                        i.      Multiply Matrices
-                                        ii.     Multiply Matrices by Constant
-                                        iii.    Multiply Matrices With Mod
-                                        iv.     Back
+                                        
+                                        █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▄█
+                                        █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ░█░
+
+                                        █▀▄▀█ ▄▀█ ▀█▀ █▀█ █ █▀▀ █▀▀ █▀
+                                        █░▀░█ █▀█ ░█░ █▀▄ █ █▄▄ ██▄ ▄█
+
+
+                                        ░ 1. Multiply Matrices
+                                        ░ 2. Multiply Matrices by Constant
+                                        ░ 3. Multiply Matrices With Mod
+                                        ░ 4. Back
                                         """);
 
-                                    System.out.print("Choose: ");
+                                    System.out.print("░ >> Choose: ");
                                     String multiplyChoice = scanner.nextLine().toUpperCase();
 
+                                    pause();
+                                    cls();
+
                                     switch (multiplyChoice) {
-                                        case "I":
+                                        case "1":
                                         case "MULTIPLY MATRICES":
                                             boolean iMultiplyInput = true;
                                             while (iMultiplyInput) {
                                                 System.out.println("""
-                                                    i.      Keyboard Input
-                                                    ii.     File Input
-                                                    iii.    Back
-                                                    """);
-                                                System.out.println("Choose: ");
-                                                String iMultiplyInputChoice = scanner.nextLine().toUpperCase();
+                                                
+                                                    █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▄█
+                                                    █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ░█░
 
-                                                switch (iMultiplyInputChoice){
-                                                    case "I":
-                                                    case "KEYBOARD INPUT":
-                                                        double[][] matrixiD1 = ReadMatrices.Keyboard();
-                                                        double[][] matrixiD2 = ReadMatrices.Keyboard();
+
+                                                    ░ Source of Input:
+                                                    ───────────────────
+
+                                                    ░ 1. Keyboard
+                                                    ░ 2. File
+                                                    ░ 3. Back
+                                                    """);
+                                                    System.out.print("░ >> Choose: ");
+                                                    String iMultiplyInputChoice = scanner.nextLine().toUpperCase();
+
+                                                    pause();
+                                                    cls();
+
+                                                    switch (iMultiplyInputChoice){
+                                                        case "1":
+                                                        case "KEYBOARD INPUT":
+                                                            double[][] matrixiD1 = ReadMatrices.Keyboard();
+                                                            double[][] matrixiD2 = ReadMatrices.Keyboard();
+                                                            
+                                                            double[][] resultMultiplyMatrix = Multiplies.MultiplyMatrix(matrixiD1, matrixiD2);
                                                         
-                                                        double[][] resultMultiplyMatrix = Multiplies.MultiplyMatrix(matrixiD1, matrixiD2);
-                                                    
-                                                        if (resultMultiplyMatrix == null) {
-                                                            System.out.println("Error: Jumlah kolom matriks pertama tidak sama dengan jumlah baris matriks kedua.");
-                                                        } else {
-                                                            System.out.println("Matriks pertama:");
-                                                            PrintMatrices.Print(matrixiD1);
-                                                    
-                                                            System.out.println("Matriks kedua:");
-                                                            PrintMatrices.Print(matrixiD2);
-                                                    
-                                                            System.out.println("Hasil perkalian matriks: ");
-                                                            PrintMatrices.Print(resultMultiplyMatrix);
-                                                        }
-                                                        break;
-                                                    
-                                                    case "II":
-                                                    case "FILE INPUT":
-                                                    case "III":
-                                                    case "BACK":
+                                                            if (resultMultiplyMatrix == null) {
+                                                                System.out.println("Error: Jumlah kolom matriks pertama tidak sama dengan jumlah baris matriks kedua.");
+                                                            } else {
+                                                                System.out.println("Matriks pertama:");
+                                                                PrintMatrices.Print(matrixiD1);
+                                                        
+                                                                System.out.println("Matriks kedua:");
+                                                                PrintMatrices.Print(matrixiD2);
+                                                        
+                                                                System.out.println("Hasil perkalian matriks: ");
+                                                                PrintMatrices.Print(resultMultiplyMatrix);
+                                                            }
+                                                            break;
+                                                        
+                                                        case "2":
+                                                        case "FILE INPUT":
+                                                            break;
+
+                                                        case "3":
+                                                        case "BACK":
+                                                            iMultiplyInput = false;
+                                                            break;
                                                 }
                                             }
+                                            break;
 
-                                        case "II":
+                                        case "2":
                                         case "MULTIPLY MATRICES BY CONSTANT":
                                             boolean iiMultiplyInput = true;
                                             while (iiMultiplyInput) {
                                                 System.out.println("""
-                                                    i.      Keyboard Input
-                                                    ii.     File Input
-                                                    iii.    Back
+                                                
+                                                    █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▄█
+                                                    █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ░█░
+                                                    
+                                                    █▄▄ █▄█   █▀▀ █▀█ █▄░█ █▀ ▀█▀ ▄▀█ █▄░█ ▀█▀
+                                                    █▄█ ░█░   █▄▄ █▄█ █░▀█ ▄█ ░█░ █▀█ █░▀█ ░█░
+
+
+                                                    ░ Source of Input:
+                                                    ───────────────────
+
+                                                    ░ 1. Keyboard
+                                                    ░ 2. File
+                                                    ░ 3. Back
                                                     """);
-                                                System.out.println("Choose: ");
+                                                System.out.print("░ >> Choose: ");
                                                 String iiMultiplyInputChoice = scanner.nextLine().toUpperCase();
+
+                                                pause();
+                                                cls();
+
                                                 switch (iiMultiplyInputChoice){
-                                                    case "I":
+                                                    case "1":
                                                     case "KEYBOARD INPUT":
                                                         double[][] matrixiiD1 = ReadMatrices.Keyboard();
 
@@ -339,11 +468,11 @@ public class Main {
                                                         PrintMatrices.Print(resultMultiplyMatrixByConstant);
                                                         break;
 
-                                                    case "II":
+                                                    case "2":
                                                     case "FILE INPUT":
                                                         break;
 
-                                                    case "III":
+                                                    case "3":
                                                     case "BACK":
                                                         iiMultiplyInput = false;
                                                         break;
@@ -351,22 +480,35 @@ public class Main {
                                             }
                                             break;
 
-
-                                        case "III":
+                                        case "3":
                                         case "MULTIPLY MATRIX WITH MOD":
                                             boolean iiiMultiplyInput = true;
                                             while (iiiMultiplyInput) {
                                                 System.out.println("""
-                                                    i.      Keyboard Input
-                                                    ii.     File Input
-                                                    iii.    Back
+                                                
+                                                    █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▄█
+                                                    █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ░█░
+                                                   
+                                                    █░█░█ █ ▀█▀ █░█   █▀▄▀█ █▀█ █▀▄
+                                                    ▀▄▀▄▀ █ ░█░ █▀█   █░▀░█ █▄█ █▄▀
+
+
+                                                    ░ Source of Input:
+                                                    ───────────────────
+
+                                                    ░ 1. Keyboard
+                                                    ░ 2. File
+                                                    ░ 3. Back
                                                     """);
 
-                                                System.out.println("Choose: ");
+                                                System.out.print("░ >> Choose: ");
                                                 String iiiMultiplyInputChoice = scanner.nextLine().toUpperCase();
 
+                                                pause();
+                                                cls();
+
                                                 switch (iiiMultiplyInputChoice){
-                                                    case "I":
+                                                    case "1":
                                                     case "KEYBOARD INPUT":
                                                         double[][] matrix1 = ReadMatrices.Keyboard();
                                                         double[][] matrix2 = ReadMatrices.Keyboard();
@@ -385,12 +527,12 @@ public class Main {
                                                         }
                                                         break;
 
-                                                    case "II":
+                                                    case "2":
                                                     case "FILE INPUT":
 
                                                         break;
 
-                                                    case "III":
+                                                    case "3":
                                                     case "BACK":
                                                         iiiMultiplyInput = false;
                                                         break;
@@ -399,7 +541,7 @@ public class Main {
                                             break;
 
 
-                                        case "IV":
+                                        case "4":
                                         case "BACK":
                                             multiplyMenu = false;
                                             break;
@@ -410,7 +552,7 @@ public class Main {
                                 }
                                 break;
 
-                            case "E":
+                            case "5":
                             case "BACK":
                                 matricesMenu = false;
                                 break;
@@ -427,38 +569,41 @@ public class Main {
                     boolean splMenu = true;
                     while (splMenu) {
                         System.out.println("""
-                            a. Gauss Elimination Method
-                            b. Gauss-Jordan Elimination Method
-                            c. Inverse Matrices Method
-                            d. Cramer Method
-                            e. Back
+                            ░ 1. Gauss Elimination Method
+                            ░ 2. Gauss-Jordan Elimination Method
+                            ░ 3. Inverse Matrices Method
+                            ░ 4. Cramer Method
+                            ░ 5. Back
                             """);
                         
-                        System.out.println("Choose: ");
+                        System.out.print("░ >> Choose: ");
                         String splChoice = scanner.nextLine().toUpperCase();
+
+                        pause();
+                        cls();
     
                         switch (splChoice) {
-                            case "A":
+                            case "1":
                             case "GAUSS ELIMINATION METHOD":
                                 // nama1
                                 break;
     
-                            case "B":
+                            case "2":
                             case "GAUSS-JORDAN ELIMINATION METHOD":
                                 // nama2
                                 break;
     
-                            case "C":
+                            case "3":
                             case "INVERSE MATRICES METHOD":
                                 // nama2
                                 break;
     
-                            case "D":
+                            case "4":
                             case "CRAMER METHOD":
                                 // nama2
                                 break;
                             
-                            case "E":
+                            case "5":
                             case "BACK":
                                 splMenu = false;
                                 break;
@@ -474,26 +619,29 @@ public class Main {
                     boolean determinantMenu = true;
                     while (determinantMenu) {
                         System.out.println("""
-                            a. Cofactor Expansion Method
-                            b. det2
-                            c. Back
+                            ░ 1. Cofactor Expansion Method
+                            ░ 2. det2
+                            ░ 3. Back
                             """);
                         
-                        System.out.println("Choose: ");
+                        System.out.print("░ >> Choose: ");
                         String determinantChoice = scanner.nextLine().toUpperCase();
 
+                        pause();
+                        cls();
+
                         switch (determinantChoice) {
-                            case "A":
+                            case "1":
                             case "Cofactor Expansion Method":
                                 // nama1
                                 break;
 
-                            case "B":
+                            case "2":
                             case "det2":
                                 // nama2
                                 break;
                             
-                            case "C":
+                            case "3":
                             case "BACK":
                                 determinantMenu = false;
                                 break;
@@ -509,26 +657,29 @@ public class Main {
                     boolean inverseMenu = true;
                     while (inverseMenu) {
                         System.out.println("""
-                            a. Inverse Matrices Method
-                            b. Adjoint Method
-                            c. Back
+                            ░ 1. Inverse Matrices Method
+                            ░ 2. Adjoint Method
+                            ░ 3. Back
                             """);
                         
-                        System.out.println("Choose: ");
+                        System.out.print("░ >> Choose: ");
                         String inverseChoice = scanner.nextLine().toUpperCase();
 
+                        pause();
+                        cls();
+
                         switch (inverseChoice) {
-                            case "A":
+                            case "1":
                             case "INVERSE MATRICES METHOD":
                                 // nama1
                                 break;
 
-                            case "B":
+                            case "2":
                             case "ADJOINT METHOD":
                                 // nama2
                                 break;
                             
-                            case "C":
+                            case "3":
                             case "BACK":
                                 inverseMenu = false;
                                 break;
@@ -553,8 +704,55 @@ public class Main {
                 case "MULTIPLE LINEAR REGRESSION":
                     // Regresi
                     break;
-
+                
                 case "8":
+                case "HELP":
+                    boolean helpMenu = true;
+                    while (helpMenu) {
+                        System.out.println("""
+
+                            █░█ █▀▀ █░░ █▀█
+                            █▀█ ██▄ █▄▄ █▀▀
+
+
+                            ░ 1. Cara menginput elemen matriks
+                            ░ 2. Back
+                            """);
+                        
+                        System.out.print("░ >> Choose: ");
+                        String helpChoice = scanner.nextLine().toUpperCase();
+
+                        pause();
+                        cls();
+
+                        switch (helpChoice) {
+                            case "1":
+                            case "CARA MENGINPUT ELEMEN MATRIKS":
+                                System.out.println("""
+                                    ─────────────────────────────────
+                                    ░ CARA MENGINPUT ELEMEN MATRIKS ░ 
+                                    ─────────────────────────────────
+                                    """);
+                                System.out.print("> Gunakan spasi untuk pemisah antarkolom\n");
+                                System.out.println("> Gunakan newline (enter) untuk pemisah antarbaris\n");
+
+                                pause();
+                                cls();
+                                
+                                break;
+                            
+                            case "2":
+                            case "BACK":
+                                helpMenu = false;
+                                break;
+                            
+                            default:
+                                System.out.println("Tidak valid.");
+                        }
+                    }
+                    break;
+
+                case "9":
                 case "EXIT":
                     System.out.println("byeeee.");
                     System.exit(0);
@@ -571,7 +769,7 @@ public class Main {
     }
     
     public static void pause() {
-        System.out.print("Press Enter to continue...");
+        System.out.print("Press Enter to continue ....");
         try {
             System.in.read(); 
             System.in.skip(System.in.available()); 
