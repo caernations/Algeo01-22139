@@ -33,7 +33,6 @@ public class MatricesIO {
             }
 
             writer.close();
-            System.out.println("Matrix has been saved to " + outputFileName);
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
