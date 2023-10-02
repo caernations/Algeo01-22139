@@ -34,32 +34,26 @@ public class SPL {
         return solusi;
     }
 
-    public static void Gauss(double[][] matrix) {
+    public static double[] Gauss(double[][] matrix, double[] solutions) {
         int row = matrix.length;
         int col = matrix[0].length;
         matrix = Echelon.RowEchelon(matrix);
 
         //kalo punya solusi maka kalkulasi solusi
         if (CheckSolution(matrix)) {
-            double[] x = new double[col-1];
             double sum = 0;
-            x[col-2] = matrix[row-1][col-1] / matrix[row-1][col-2];
+            solutions[col-2] = matrix[row-1][col-1] / matrix[row-1][col-2];
 
             for (int i = 2; i < row + 1; i++) {
                 sum = 0;
                 for (int j = col-i; j < col - 1; j ++) {
-                    sum += matrix[row-i][j] * x[j];
+                    sum += matrix[row-i][j] * solutions[j];
                 }
 
-                x[col-i-1] = (matrix[row-i][col-1] - sum) / matrix[row-i][row-i];
-            }
-
-            //print solusi x unik
-            for (int i = 0; i < col - 1; i++) {
-                System.out.println("X" + (i+1) + "= " + round(x[i]));
+                solutions[col-i-1] = (matrix[row-i][col-1] - sum) / matrix[row-i][row-i];
             }
         }
-
+        return solutions;
     }
 
     public static double[][] DeleteZeros(double[][] matrix) {
