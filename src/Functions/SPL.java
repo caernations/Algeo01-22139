@@ -1,7 +1,6 @@
 package Functions;
 import Matrices.*;
 import Operations.Multiplies;
-import static java.lang.Math.round;
 
 public class SPL {
     public static boolean CheckSolution(double[][] matrix) {
@@ -34,7 +33,8 @@ public class SPL {
         return solusi;
     }
 
-    public static double[] Gauss(double[][] matrix, double[] solutions) {
+    public static void Gauss(double[][] matrix, double[] solutions) {
+        //solutions x1, x2, ... , xk ada distore di array solutions. BELUM TERMASUK PRINT
         int row = matrix.length;
         int col = matrix[0].length;
         matrix = Echelon.RowEchelon(matrix);
@@ -53,7 +53,6 @@ public class SPL {
                 solutions[col-i-1] = (matrix[row-i][col-1] - sum) / matrix[row-i][row-i];
             }
         }
-        return solutions;
     }
 
     public static double[][] DeleteZeros(double[][] matrix) {
@@ -62,7 +61,7 @@ public class SPL {
         int col = matrix[0].length;
 
         //Kalo di suatu row semua elemen nya adalah zero, maka row dihapus
-        for (int i = 0; i < row + 1; i++) {
+        for (int i = 0; i < row; i++) {
             cnt = 0;
             for (int j = 0; j < col; j++) {
                 if (matrix[i][j] == 0) {
@@ -85,32 +84,27 @@ public class SPL {
         return deleted;
     }
 
-    public static void GaussJordan(double[][] matrix) {
+    public static void GaussJordan(double[][] matrix, double[] solutions) {
+        //solutions x1, x2, ... , xk ada distore di array solutions. BELUM TERMASUK PRINT
         int row = matrix.length;
         int col = matrix[0].length;
         matrix = DeleteZeros(Echelon.ReducedRowEchelon(matrix));
 
-        double[] x = new double[col-1];
         double sum = 0;
-        x[col-2] = matrix[row-1][col-1] / matrix[row-1][col-2];
+        solutions[col - 2] = matrix[row - 1][col - 1] / matrix[row - 1][col - 2];
 
         for (int i = 2; i < row + 1; i++) {
             sum = 0;
-            for (int j = col-i; j < col - 1; j ++) {
-                sum += matrix[row-i][j] * x[j];
+            for (int j = col - i; j < col - 1; j++) {
+                sum += matrix[row - i][j] * solutions[j];
             }
 
-            x[col-i-1] = (matrix[row-i][col-1] - sum) / matrix[row-i][row-i];
-            //System.out.println("X=" + (col-i-1) + "=" + (matrix[row-i][col-1]) + "-" + sum + "/" + matrix[row-i][row-i]);
-        }
-
-        //print solusi
-        for (int i = 0; i < col - 1; i++) {
-            System.out.println("X" + (i+1) + "= " + round(x[i]));
+            solutions[col - i - 1] = (matrix[row - i][col - 1] - sum) / matrix[row - i][row - i];
         }
     }
 
     public static void MatriksBalikan(double[][] matrix) {
+        //udah termasuk print
         int row = matrix.length;
         int col = matrix[0].length;
 
@@ -140,6 +134,7 @@ public class SPL {
     }
 
     public static void Cramer(double[][] matrix) {
+        //udah termasuk print
         int row = matrix.length;
         int col = matrix[0].length;
 
