@@ -62,10 +62,14 @@ public class Regression {
         DecimalFormat df = new DecimalFormat("#.####");
         SPL.Gauss(result, solutions);
 
-        System.out.print("f(x) = " + df.format(solutions[0]) + " + ");
-        for (int i = 1; i < n - 1; i++) {
-            System.out.print(df.format(solutions[i]) + "x" + i + " + ");
+        System.out.print("f(x) = " + df.format(solutions[0]));
+        for (int i = 1; i < n; i++) {
+            if (solutions[i] < 0) {
+                System.out.print(" - ");
+            } else {
+                System.out.print(" + ");
+            }
+            System.out.print(df.format(Math.abs(solutions[i])) + "x" + i);
         }
-        System.out.print(df.format(solutions[n - 1]) + "x" + n);
     }
 }
