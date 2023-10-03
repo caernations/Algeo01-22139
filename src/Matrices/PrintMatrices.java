@@ -15,4 +15,14 @@ public class PrintMatrices {
             System.out.println();
         }
     }
+    public static double[][] CreateHilbert(int n) {
+	    double[][] hasil = new double[n][n];
+	    for (int i = 1; i <= n; i++) {
+		    for (int j = 0; j < n; j++) {
+			    hasil[i-1][j] = (float)1 / (i + j);
+		    }
+	    }
+
+	    return hasil;
+    }
 }
