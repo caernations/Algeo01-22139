@@ -15,8 +15,6 @@ public class ReadMatrices {
 
             Elemen-elemen matriks
             ──────────────────────""");
-        System.out.println("> Gunakan spasi untuk pemisah antarkolom");
-        System.out.println("> Gunakan newline (enter) untuk pemisah antarbaris\n");
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 matrix[i][j] = scanner.nextDouble();

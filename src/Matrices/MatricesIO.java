@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+
 public class MatricesIO {
+                    
     public static void SaveMatrixToFile(double[][] matrix, String filename) {
         try {
             String outputFileName = filename + ".txt";
@@ -46,8 +48,11 @@ public class MatricesIO {
             File file = new File(inputFileName);
 
             if (!file.exists()) {
-                System.out.println("File not found: " + inputFileName);
+                System.out.println("\n░ >> File " + inputFileName + " doesn't exist!");
+                pause();
+                cls();
                 return null;
+
             }
 
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -74,7 +79,7 @@ public class MatricesIO {
                     try {
                         matrix[row][col] = Double.parseDouble(values[col]);
                     } catch (NumberFormatException e) {
-                        System.out.println("Error: Data in the file is not a valid double.");
+                        System.out.println("Error: Invalid data!");
                         return null;
                     }
                 }
@@ -89,4 +94,20 @@ public class MatricesIO {
             return null;
         }
     }
+
+    public static void cls() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }
+    
+    public static void pause() {
+        System.out.print("Press Enter to continue ....");
+        try {
+            System.in.read(); 
+            System.in.skip(System.in.available()); 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

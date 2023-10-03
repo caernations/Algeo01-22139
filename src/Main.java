@@ -1,7 +1,5 @@
 import java.util.*;
 
-import javax.swing.plaf.PanelUI;
-
 import Matrices.MatricesIO;
 import Matrices.PrintMatrices;
 import Matrices.ReadMatrices;
@@ -24,7 +22,8 @@ public class Main {
             ▐▓█░░▄░░▄▀░░█▓▌░█▄▄▄█░
             ▐▓█▄▄▄▄▄▄▄▄▄█▓▌░█████░
             ░░░░▄▄███▄▄░░░░░█████░
-                """);
+
+        © 2023 | Yasmin, Attara, Ikhwan | IF'22""");
         System.out.println("═════════════════════════════════════════\n\n");
 
 
@@ -107,6 +106,13 @@ public class Main {
                                         case "1":
                                         case "KEYBOARD":
                                             System.out.println("""
+                                                
+                                                ▄▀█ █▀▄ █▀▄ █ ▀█▀ █ █▀█ █▄░█
+                                                █▀█ █▄▀ █▄▀ █ ░█░ █ █▄█ █░▀█
+
+
+                                                """);
+                                            System.out.println("""
                                                 ─────────────────────
                                                 ░  M A T R I X  1 : ░
                                                 ─────────────────────
@@ -136,6 +142,7 @@ public class Main {
 
                                                     System.out.println("""
 
+                                                    
 
                                                         █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
                                                         ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
@@ -147,6 +154,10 @@ public class Main {
                                                         String outputFileName = scanner.nextLine();
                                                         MatricesIO.SaveMatrixToFile(resultAddition, outputFileName);
                                                         System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                    } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                        System.out.println("Not saved.");
+                                                    } else {
+                                                        System.out.println("Invalid.");
                                                     }
 
                                                     pause();
@@ -164,44 +175,83 @@ public class Main {
 
                                         case "2":
                                         case "FILE":
-                                            System.out.print("Masukkan nama file matriks pertama: ");
+                                            System.out.println("""
+                                                
+                                                ▄▀█ █▀▄ █▀▄ █ ▀█▀ █ █▀█ █▄░█
+                                                █▀█ █▄▀ █▄▀ █ ░█░ █ █▄█ █░▀█
+
+
+                                                """);
+                                            System.out.print("░ >> Matrix 1 file name: ");
                                             String inputFileName1 = scanner.nextLine();
                                             double[][] matrixA1ii = MatricesIO.FileToMatrix(inputFileName1);
-                                        
-                                            System.out.print("Masukkan nama file matriks kedua: ");
+                                            System.out.print("░ >> Matrix 2 file name: ");
                                             String inputFileName2 = scanner.nextLine();
                                             double[][] matrixA2ii = MatricesIO.FileToMatrix(inputFileName2);
                                         
                                             if (matrixA1ii != null && matrixA2ii != null) {
-                                                System.out.println("Matriks pertama dari file:");
+                                                System.out.print("""
+
+
+                                                    ─────────────────────
+                                                    ░  M A T R I X  1 : ░
+                                                    ─────────────────────
+                                                    """);
                                                 PrintMatrices.Print(matrixA1ii);
-                                        
-                                                System.out.println("Matriks kedua dari file:");
+                                                System.out.print("""
+
+
+                                                    ─────────────────────
+                                                    ░  M A T R I X  2 : ░
+                                                    ─────────────────────
+                                                    """);
                                                 PrintMatrices.Print(matrixA2ii);
                                         
                                                 if (matrixA1ii.length == matrixA2ii.length && matrixA1ii[0].length == matrixA2ii[0].length) {
                                                     double[][] resultAddition = Arithmetics.Addition(matrixA1ii, matrixA2ii);
                                                     if (resultAddition != null) {
-                                                        System.out.println("Hasil penjumlahan matriks:");
+                                                        System.out.print("""
+                                                            \n
+                                                            ────────────────────────────
+                                                            ░         H A S I L        ░
+                                                            ░  P E N J U M L A H A N : ░
+                                                            ────────────────────────────
+                                                            """);
                                                         PrintMatrices.Print(resultAddition);
-                                        
-                                                        System.out.print("Apakah Anda ingin menyimpan hasil penjumlahan matriks? (Y/N): ");
+
+                                                        pause();
+
+                                                        System.out.println("""
+
+                                                        
+
+                                                            █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                            ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                            """);
+                                                        System.out.print(">> ");
                                                         String saveChoice = scanner.nextLine().toUpperCase();
-                                                        if (saveChoice.equals("Y")) {
-                                                            System.out.print("Masukkan nama file output: ");
+                                                        if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                            System.out.print(">> Save as: ");
                                                             String outputFileName = scanner.nextLine();
                                                             MatricesIO.SaveMatrixToFile(resultAddition, outputFileName);
+                                                            System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                        } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                            System.out.println("Not saved.");
+                                                        } else {
+                                                            System.out.println("Invalid.");
                                                         }
+
+                                                        pause();
+                                                        cls();
+
                                                     } else {
                                                         System.out.println("Jumlah baris dan kolom matriks tidak sama. Penjumlahan tidak dapat dilakukan.");
                                                     }
                                                 } else {
                                                     System.out.println("Jumlah baris dan kolom matriks tidak sama. Penjumlahan tidak dapat dilakukan.");
                                                 }
-                                            } else {
-                                                System.out.println("File input tidak dapat dibaca atau matriks tidak valid.");
                                             }
-                                            break;
+                                                break;
 
                                         case "3":
                                         case "BACK":
@@ -738,7 +788,7 @@ public class Main {
 
                                 pause();
                                 cls();
-                                
+
                                 break;
                             
                             case "2":
@@ -754,7 +804,17 @@ public class Main {
 
                 case "9":
                 case "EXIT":
-                    System.out.println("byeeee.");
+                    System.out.println("""
+                        
+                        ───▄▀▀▀▄▄▄▄▄▄▄▀▀▀▄───   ▀█▀ █░█ ▄▀█ █▄░█ █▄▀   █▄█ █▀█ █░█  ▀ ▀▄
+                        ───█▒▒░░░░░░░░░▒▒█───   ░█░ █▀█ █▀█ █░▀█ █░█   ░█░ █▄█ █▄█  ▄ ▄▀
+                        ────█░░█░░░░░█░░█────
+                        ─▄▄──█░░░▀█▀░░░█──▄▄─   █▄▄ █▄█ █▀▀ ▄▄ █▄▄ █▄█ █▀▀  █
+                        █░░█─▀▄░░░░░░░▄▀─█░░█   █▄█ ░█░ ██▄ ░░ █▄█ ░█░ ██▄  ▄
+
+                        © 2023 | Yasmin, Attara, Ikhwan | Teknik Informatika ITB '22
+
+                        """);
                     System.exit(0);
 
                 default:
