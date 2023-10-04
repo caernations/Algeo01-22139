@@ -40,6 +40,26 @@ public class MatricesIO {
         }
     }
 
+    public static void SaveStringToFile(String content, String filename) {
+        try {
+            String outputFileName = filename + ".txt";
+            String outputPath = "../test/";
+    
+            if (!Files.exists(Paths.get(outputPath))) {
+                Files.createDirectories(Paths.get(outputPath));
+            }
+    
+            File file = new File(outputPath + outputFileName);
+    
+            FileWriter writer = new FileWriter(file);
+            writer.write(content);
+    
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
     
     public static double[][] FileToMatrix(String filename) {
         try {
