@@ -67,7 +67,10 @@ public class Main {
                             ░ 2. Subtraction (-)
                             ░ 3. Trace (tr)
                             ░ 4. Multiply (*)
-                            ░ 5. Back
+                            ░ 5. Transpose (T)
+                            ░ 6. Row Echelon
+                            ░ 7. Reduced Row Echelon
+                            ░ 8. Back
                             """);
 
                         System.out.print("░ >> Choose operation: ");
@@ -1274,6 +1277,72 @@ public class Main {
                                 break;
 
                             case "5":
+                            case "T":
+                            case "TRANSPOSE":
+                                boolean transposeInput = true;
+                                while(transposeInput) {
+                                    System.out.println("""
+
+                                        ▀█▀ █▀█ ▄▀█ █▄░█ █▀ █▀█ █▀█ █▀ █▀▀
+                                        ░█░ █▀▄ █▀█ █░▀█ ▄█ █▀▀ █▄█ ▄█ ██▄
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+                                    System.out.print("░ >> Choose: ");
+                                    String transposeInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (transposeInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+                                                
+                                                ▀█▀ █▀█ ▄▀█ █▄░█ █▀ █▀█ █▀█ █▀ █▀▀
+                                                ░█░ █▀▄ █▀█ █░▀█ ▄█ █▀▀ █▄█ ▄█ ██▄
+
+
+                                                """);
+                                            System.out.println("""
+                                                ──────────────────
+                                                ░  M A T R I X : ░
+                                                ──────────────────
+                                                """);
+                                            double[][] matrixE = ReadMatrices.Keyboard();
+        
+
+                                            break;
+                                        case "2":
+                                        case "FILE":
+                                            break;
+                                        case "3":
+                                        case "BACK":
+                                            transposeInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
+                                break;
+
+                            case "6":
+                            case "ROW ECHELON":
+                                operationsMenu = false;
+                                break;
+
+                            case "7":
+                            case "REDUCED ROW ECHELON":
+                                operationsMenu = false;
+                                break;
+
+                            case "8":
                             case "BACK":
                                 operationsMenu = false;
                                 break;
@@ -1290,6 +1359,17 @@ public class Main {
                     boolean splMenu = true;
                     while (splMenu) {
                         System.out.println("""
+                        
+                            █▀ █▄█ █▀ ▀█▀ █▀▀ █▀▄▀█   █▀█ █▀▀
+                            ▄█ ░█░ ▄█ ░█░ ██▄ █░▀░█   █▄█ █▀░
+
+                            █░░ █ █▄░█ █▀▀ ▄▀█ █▀█
+                            █▄▄ █ █░▀█ ██▄ █▀█ █▀▄
+
+                            █▀▀ █▀█ █░█ ▄▀█ ▀█▀ █ █▀█ █▄░█ █▀
+                            ██▄ ▀▀█ █▄█ █▀█ ░█░ █ █▄█ █░▀█ ▄█
+
+
                             ░ 1. Gauss Elimination Method
                             ░ 2. Gauss-Jordan Elimination Method
                             ░ 3. Inverse Matrices Method
@@ -1306,22 +1386,258 @@ public class Main {
                         switch (splChoice) {
                             case "1":
                             case "GAUSS ELIMINATION METHOD":
-                                // nama1
+                                boolean splGaussInput = true;
+                                while (splGaussInput) {
+                                    System.out.println("""
+
+                                        █▀▀ ▄▀█ █░█ █▀ █▀
+                                        █▄█ █▀█ █▄█ ▄█ ▄█
+                                        
+                                        █▀▀ █░░ █ █▀▄▀█ █ █▄░█ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                        ██▄ █▄▄ █ █░▀░█ █ █░▀█ █▀█ ░█░ █ █▄█ █░▀█
+
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+
+                                    System.out.print("░ >> Choose: ");
+                                    String splGaussInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (splGaussInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+                                                
+                                                █▀▀ ▄▀█ █░█ █▀ █▀
+                                                █▄█ █▀█ █▄█ ▄█ ▄█
+                                                
+                                                █▀▀ █░░ █ █▀▄▀█ █ █▄░█ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                                ██▄ █▄▄ █ █░▀░█ █ █░▀█ █▀█ ░█░ █ █▄█ █░▀█
+
+
+                                                """);
+                                            break;
+
+                                        case "2":
+                                        case "FILE":
+                                            System.out.println("""
+                                                
+                                                █▀▀ ▄▀█ █░█ █▀ █▀
+                                                █▄█ █▀█ █▄█ ▄█ ▄█
+                                                
+                                                █▀▀ █░░ █ █▀▄▀█ █ █▄░█ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                                ██▄ █▄▄ █ █░▀░█ █ █░▀█ █▀█ ░█░ █ █▄█ █░▀█
+
+
+                                                """);
+                                            break;
+
+                                        case "3":
+                                        case "BACK":
+                                            splGaussInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
                                 break;
     
                             case "2":
                             case "GAUSS-JORDAN ELIMINATION METHOD":
-                                // nama2
+                                boolean splGaussJordanInput = true;
+                                while (splGaussJordanInput) {
+                                    System.out.println("""
+
+                                        █▀▀ ▄▀█ █░█ █▀ █▀ ▄▄ ░░█ █▀█ █▀█ █▀▄ ▄▀█ █▄░█
+                                        █▄█ █▀█ █▄█ ▄█ ▄█ ░░ █▄█ █▄█ █▀▄ █▄▀ █▀█ █░▀█
+                                        
+                                        █▀▀ █░░ █ █▀▄▀█ █ █▄░█ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                        ██▄ █▄▄ █ █░▀░█ █ █░▀█ █▀█ ░█░ █ █▄█ █░▀█
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+
+                                    System.out.print("░ >> Choose: ");
+                                    String splGaussJordanInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (splGaussJordanInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+                                                
+                                                █▀▀ ▄▀█ █░█ █▀ █▀ ▄▄ ░░█ █▀█ █▀█ █▀▄ ▄▀█ █▄░█
+                                                █▄█ █▀█ █▄█ ▄█ ▄█ ░░ █▄█ █▄█ █▀▄ █▄▀ █▀█ █░▀█
+                                                
+                                                █▀▀ █░░ █ █▀▄▀█ █ █▄░█ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                                ██▄ █▄▄ █ █░▀░█ █ █░▀█ █▀█ ░█░ █ █▄█ █░▀█
+
+
+                                                """);
+                                            break;
+
+                                        case "2":
+                                        case "FILE":
+                                            System.out.println("""
+                                                
+                                                █▀▀ ▄▀█ █░█ █▀ █▀ ▄▄ ░░█ █▀█ █▀█ █▀▄ ▄▀█ █▄░█
+                                                █▄█ █▀█ █▄█ ▄█ ▄█ ░░ █▄█ █▄█ █▀▄ █▄▀ █▀█ █░▀█
+                                                
+                                                █▀▀ █░░ █ █▀▄▀█ █ █▄░█ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                                ██▄ █▄▄ █ █░▀░█ █ █░▀█ █▀█ ░█░ █ █▄█ █░▀█
+
+
+                                                """);
+                                            break;
+
+                                        case "3":
+                                        case "BACK":
+                                            splGaussJordanInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
                                 break;
     
                             case "3":
                             case "INVERSE MATRICES METHOD":
-                                // nama2
+                                boolean splInverseInput = true;
+                                while (splInverseInput) {
+                                    System.out.println("""
+
+                                        █ █▄░█ █░█ █▀▀ █▀█ █▀ █▀▀   █▀▄▀█ ▄▀█ ▀█▀ █▀█ █ █▀▀ █▀▀ █▀
+                                        █ █░▀█ ▀▄▀ ██▄ █▀▄ ▄█ ██▄   █░▀░█ █▀█ ░█░ █▀▄ █ █▄▄ ██▄ ▄█ 
+
+                                        █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                        █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+
+                                    System.out.print("░ >> Choose: ");
+                                    String splInverseInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (splInverseInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+                                                
+                                                █ █▄░█ █░█ █▀▀ █▀█ █▀ █▀▀   █▀▄▀█ ▄▀█ ▀█▀ █▀█ █ █▀▀ █▀▀ █▀
+                                                █ █░▀█ ▀▄▀ ██▄ █▀▄ ▄█ ██▄   █░▀░█ █▀█ ░█░ █▀▄ █ █▄▄ ██▄ ▄█ 
+
+                                                █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                                █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+
+                                                """);
+                                            break;
+
+                                        case "2":
+                                        case "FILE":
+                                            System.out.println("""
+                                                
+                                                █ █▄░█ █░█ █▀▀ █▀█ █▀ █▀▀   █▀▄▀█ ▄▀█ ▀█▀ █▀█ █ █▀▀ █▀▀ █▀
+                                                █ █░▀█ ▀▄▀ ██▄ █▀▄ ▄█ ██▄   █░▀░█ █▀█ ░█░ █▀▄ █ █▄▄ ██▄ ▄█ 
+
+                                                █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                                █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+
+                                                """);
+                                            break;
+
+                                        case "3":
+                                        case "BACK":
+                                            splInverseInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
                                 break;
     
                             case "4":
                             case "CRAMER METHOD":
-                                // nama2
+                                boolean splCramerInput = true;
+                                while (splCramerInput) {
+                                    System.out.println("""
+
+                                        █▀▀ █▀█ ▄▀█ █▀▄▀█ █▀▀ █▀█   █▀█ █░█ █░░ █▀▀
+                                        █▄▄ █▀▄ █▀█ █░▀░█ ██▄ █▀▄   █▀▄ █▄█ █▄▄ ██▄
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+
+                                    System.out.print("░ >> Choose: ");
+                                    String splCramerInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (splCramerInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+                                                
+                                                █▀▀ █▀█ ▄▀█ █▀▄▀█ █▀▀ █▀█   █▀█ █░█ █░░ █▀▀
+                                                █▄▄ █▀▄ █▀█ █░▀░█ ██▄ █▀▄   █▀▄ █▄█ █▄▄ ██▄
+
+
+                                                """);
+                                            break;
+
+                                        case "2":
+                                        case "FILE":
+                                            System.out.println("""
+                                                
+                                                █▀▀ █▀█ ▄▀█ █▀▄▀█ █▀▀ █▀█   █▀█ █░█ █░░ █▀▀
+                                                █▄▄ █▀▄ █▀█ █░▀░█ ██▄ █▀▄   █▀▄ █▄█ █▄▄ ██▄
+
+
+                                                """);
+                                            break;
+
+                                        case "3":
+                                        case "BACK":
+                                            splCramerInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
                                 break;
                             
                             case "5":
@@ -1330,7 +1646,7 @@ public class Main {
                                 break;
                             
                             default:
-                                System.out.println("Tidak valid.");
+                                System.out.println("Invalid.");
                         }
                     }
                     break;
@@ -1340,8 +1656,12 @@ public class Main {
                     boolean determinantMenu = true;
                     while (determinantMenu) {
                         System.out.println("""
+
+                            █▀▄ █▀▀ ▀█▀ █▀▀ █▀█ █▀▄▀█ █ █▄░█ ▄▀█ █▄░█ ▀█▀
+                            █▄▀ ██▄ ░█░ ██▄ █▀▄ █░▀░█ █ █░▀█ █▀█ █░▀█ ░█░
+
                             ░ 1. Cofactor Expansion Method
-                            ░ 2. det2
+                            ░ 2. Reduced Row Method
                             ░ 3. Back
                             """);
                         
@@ -1353,13 +1673,137 @@ public class Main {
 
                         switch (determinantChoice) {
                             case "1":
-                            case "Cofactor Expansion Method":
-                                // nama1
+                            case "COFACTOR EXPANSION METHOD":
+                                boolean determinantCEInput = true;
+                                while (determinantCEInput){
+                                    System.out.println("""
+
+
+                                        █▀▀ █▀█ █▀▀ ▄▀█ █▀▀ ▀█▀ █▀█ █▀█   █▀▀ ▀▄▀ █▀█ ▄▀█ █▄░█ █▀ █ █▀█ █▄░█
+                                        █▄▄ █▄█ █▀░ █▀█ █▄▄ ░█░ █▄█ █▀▄   ██▄ █░█ █▀▀ █▀█ █░▀█ ▄█ █ █▄█ █░▀█
+                                        
+                                        █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                        █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+
+                                    System.out.print("░ >> Choose: ");
+                                    String determinantCEInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (determinantCEInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+                                                
+                                                █▀▀ █▀█ █▀▀ ▄▀█ █▀▀ ▀█▀ █▀█ █▀█   █▀▀ ▀▄▀ █▀█ ▄▀█ █▄░█ █▀ █ █▀█ █▄░█
+                                                █▄▄ █▄█ █▀░ █▀█ █▄▄ ░█░ █▄█ █▀▄   ██▄ █░█ █▀▀ █▀█ █░▀█ ▄█ █ █▄█ █░▀█
+                                                
+                                                █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                                █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+
+                                                """);
+                                            break;
+
+                                        case "2":
+                                        case "FILE":
+                                            System.out.println("""
+                                                
+                                                █▀▀ █▀█ █▀▀ ▄▀█ █▀▀ ▀█▀ █▀█ █▀█   █▀▀ ▀▄▀ █▀█ ▄▀█ █▄░█ █▀ █ █▀█ █▄░█
+                                                █▄▄ █▄█ █▀░ █▀█ █▄▄ ░█░ █▄█ █▀▄   ██▄ █░█ █▀▀ █▀█ █░▀█ ▄█ █ █▄█ █░▀█
+                                                
+                                                █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                                █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+
+                                                """);
+                                            break;
+
+                                        case "3":
+                                        case "BACK":
+                                            determinantCEInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
                                 break;
 
                             case "2":
-                            case "det2":
-                                // nama2
+                            case "REDUCED ROW METHOD":
+                                boolean determinantRRInput = true;
+                                while (determinantRRInput){
+                                    System.out.println("""
+
+                                        █▀█ █▀▀ █▀▄ █░█ █▀▀ █▀▀ █▀▄   █▀█ █▀█ █░█░█
+                                        █▀▄ ██▄ █▄▀ █▄█ █▄▄ ██▄ █▄▀   █▀▄ █▄█ ▀▄▀▄▀
+                                        
+                                        █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                        █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+
+                                    System.out.print("░ >> Choose: ");
+                                    String determinantRRInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (determinantRRInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+                                                
+                                                █▀█ █▀▀ █▀▄ █░█ █▀▀ █▀▀ █▀▄   █▀█ █▀█ █░█░█
+                                                █▀▄ ██▄ █▄▀ █▄█ █▄▄ ██▄ █▄▀   █▀▄ █▄█ ▀▄▀▄▀
+                                                
+                                                █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                                █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+
+                                                """);
+                                            break;
+
+                                        case "2":
+                                        case "FILE":
+                                            System.out.println("""
+                                                
+
+                                                █▀█ █▀▀ █▀▄ █░█ █▀▀ █▀▀ █▀▄   █▀█ █▀█ █░█░█
+                                                █▀▄ ██▄ █▄▀ █▄█ █▄▄ ██▄ █▄▀   █▀▄ █▄█ ▀▄▀▄▀
+                                                
+                                                █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                                █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+
+                                                """);
+                                            break;
+
+                                        case "3":
+                                        case "BACK":
+                                            determinantRRInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
                                 break;
                             
                             case "3":
@@ -1368,7 +1812,7 @@ public class Main {
                                 break;
                             
                             default:
-                                System.out.println("Tidak valid.");
+                                System.out.println("Invalid.");
                         }
                     }
                     break;
@@ -1378,6 +1822,14 @@ public class Main {
                     boolean inverseMenu = true;
                     while (inverseMenu) {
                         System.out.println("""
+
+                            █▀▄▀█ ▄▀█ ▀█▀ █▀█ █ █▀▀ █▀▀ █▀
+                            █░▀░█ █▀█ ░█░ █▀▄ █ █▄▄ ██▄ ▄█
+                            
+                            █ █▄░█ █░█ █▀▀ █▀█ █▀ █▀▀
+                            █ █░▀█ ▀▄▀ ██▄ █▀▄ ▄█ ██▄
+
+
                             ░ 1. Inverse Matrices Method
                             ░ 2. Adjoint Method
                             ░ 3. Back
@@ -1392,12 +1844,136 @@ public class Main {
                         switch (inverseChoice) {
                             case "1":
                             case "INVERSE MATRICES METHOD":
-                                // nama1
+                                boolean inverseIMInput = true;
+                                while (inverseIMInput){
+                                    System.out.println("""
+
+                                        █ █▄░█ █░█ █▀▀ █▀█ █▀ █▀▀   █▀▄▀█ ▄▀█ ▀█▀ █▀█ █ █▀▀ █▀▀ █▀
+                                        █ █░▀█ ▀▄▀ ██▄ █▀▄ ▄█ ██▄   █░▀░█ █▀█ ░█░ █▀▄ █ █▄▄ ██▄ ▄█
+
+                                        █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                        █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+
+                                    System.out.print("░ >> Choose: ");
+                                    String inverseIMInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (inverseIMInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+
+                                                █ █▄░█ █░█ █▀▀ █▀█ █▀ █▀▀   █▀▄▀█ ▄▀█ ▀█▀ █▀█ █ █▀▀ █▀▀ █▀
+                                                █ █░▀█ ▀▄▀ ██▄ █▀▄ ▄█ ██▄   █░▀░█ █▀█ ░█░ █▀▄ █ █▄▄ ██▄ ▄█
+
+                                                █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                                █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+
+                                                """);
+                                            break;
+
+                                        case "2":
+                                        case "FILE":
+                                            System.out.println("""
+
+                                                █ █▄░█ █░█ █▀▀ █▀█ █▀ █▀▀   █▀▄▀█ ▄▀█ ▀█▀ █▀█ █ █▀▀ █▀▀ █▀
+                                                █ █░▀█ ▀▄▀ ██▄ █▀▄ ▄█ ██▄   █░▀░█ █▀█ ░█░ █▀▄ █ █▄▄ ██▄ ▄█
+
+                                                █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                                █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+                                                
+                                                """);
+                                            break;
+
+                                        case "3":
+                                        case "BACK":
+                                            inverseIMInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
                                 break;
 
                             case "2":
                             case "ADJOINT METHOD":
-                                // nama2
+                                boolean inverseAMInput = true;
+                                while (inverseAMInput){
+                                    System.out.println("""
+
+                                        ▄▀█ █▀▄ ░░█ █▀█ █ █▄░█ ▀█▀
+                                        █▀█ █▄▀ █▄█ █▄█ █ █░▀█ ░█░
+                                        
+                                        █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                        █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+
+                                    System.out.print("░ >> Choose: ");
+                                    String inverseAMInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (inverseAMInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+
+                                                ▄▀█ █▀▄ ░░█ █▀█ █ █▄░█ ▀█▀
+                                                █▀█ █▄▀ █▄█ █▄█ █ █░▀█ ░█░
+
+                                                █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                                █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+
+                                                """);
+                                            break;
+
+                                        case "2":
+                                        case "FILE":
+                                            System.out.println("""
+
+                                                ▄▀█ █▀▄ ░░█ █▀█ █ █▄░█ ▀█▀
+                                                █▀█ █▄▀ █▄█ █▄█ █ █░▀█ ░█░
+
+                                                █▀▄▀█ █▀▀ ▀█▀ █░█ █▀█ █▀▄
+                                                █░▀░█ ██▄ ░█░ █▀█ █▄█ █▄▀
+
+
+                                                """);
+                                            break;
+
+                                        case "3":
+                                        case "BACK":
+                                            inverseAMInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
                                 break;
                             
                             case "3":
@@ -1412,18 +1988,312 @@ public class Main {
                     break;
 
                 case "5":
-                case "POLINOMIAL INTERPOLATION":
-                    // Polinomial Interpolation
+                case "POLYNOMIAL INTERPOLATION":
+                    boolean polynomialInterpolationMenu = true;
+                    while (polynomialInterpolationMenu) {
+                        System.out.println("""
+
+                            █▀█ █▀█ █░░ █▄█ █▄░█ █▀█ █▀▄▀█ █ ▄▀█ █░░
+                            █▀▀ █▄█ █▄▄ ░█░ █░▀█ █▄█ █░▀░█ █ █▀█ █▄▄
+                            
+                            █ █▄░█ ▀█▀ █▀▀ █▀█ █▀█ █▀█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                            █ █░▀█ ░█░ ██▄ █▀▄ █▀▀ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█
+
+                            ░ 1. Polynomial Interpolation
+                            ░ 2. Back
+                            """);
+
+                        System.out.print("░ >> Choose: ");
+                        String polynomialInterpolationChoice = scanner.nextLine().toUpperCase();
+
+                        pause();
+                        cls();
+
+                        switch (polynomialInterpolationChoice) {
+                            case "1":
+                            case "POLYNOMIAL INTERPOLATION":
+                                boolean polynomialInterpolationInput = true;
+                                while (polynomialInterpolationInput) {
+
+                                    System.out.println("""
+
+
+                                        █▀█ █▀█ █░░ █▄█ █▄░█ █▀█ █▀▄▀█ █ ▄▀█ █░░
+                                        █▀▀ █▄█ █▄▄ ░█░ █░▀█ █▄█ █░▀░█ █ █▀█ █▄▄
+                                        
+                                        █ █▄░█ ▀█▀ █▀▀ █▀█ █▀█ █▀█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                        █ █░▀█ ░█░ ██▄ █▀▄ █▀▀ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+
+                                    System.out.print("░ >> Choose: ");
+                                    String polynomialInterpolationInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (polynomialInterpolationInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+                                                
+                                                █▀█ █▀█ █░░ █▄█ █▄░█ █▀█ █▀▄▀█ █ ▄▀█ █░░
+                                                █▀▀ █▄█ █▄▄ ░█░ █░▀█ █▄█ █░▀░█ █ █▀█ █▄▄
+                                                
+                                                █ █▄░█ ▀█▀ █▀▀ █▀█ █▀█ █▀█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                                █ █░▀█ ░█░ ██▄ █▀▄ █▀▀ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█
+
+
+                                                """);
+                                            break;
+
+                                        case "2":
+                                        case "FILE":
+                                            System.out.println("""
+                                                
+                                                █▀█ █▀█ █░░ █▄█ █▄░█ █▀█ █▀▄▀█ █ ▄▀█ █░░
+                                                █▀▀ █▄█ █▄▄ ░█░ █░▀█ █▄█ █░▀░█ █ █▀█ █▄▄
+                                                
+                                                █ █▄░█ ▀█▀ █▀▀ █▀█ █▀█ █▀█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                                █ █░▀█ ░█░ ██▄ █▀▄ █▀▀ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█
+
+
+                                                """);
+                                            break;
+
+                                        case "3":
+                                        case "BACK":
+                                            polynomialInterpolationInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
+                                break;
+
+                            case "2":
+                            case "BACK":
+                                polynomialInterpolationMenu = false;
+                                break;
+
+                            default:
+                                System.out.println("Invalid.");
+                        }
+
+                    }
                     break;
 
                 case "6":
                 case "BICUBIC SPLINE INTERPOLATION":
-                    // Bicubic
+                    boolean bicubicSplineInterpolationMenu = true;
+                    while (bicubicSplineInterpolationMenu) {
+                        System.out.println("""
+
+                            █▄▄ █ █▀▀ █░█ █▄▄ █ █▀▀   █▀ █▀█ █░░ █ █▄░█ █▀▀
+                            █▄█ █ █▄▄ █▄█ █▄█ █ █▄▄   ▄█ █▀▀ █▄▄ █ █░▀█ ██▄
+                            
+                            █ █▄░█ ▀█▀ █▀▀ █▀█ █▀█ █▀█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                            █ █░▀█ ░█░ ██▄ █▀▄ █▀▀ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█
+
+                            ░ 1. Bicubic Spline Interpolation
+                            ░ 2. Back
+                            """);
+
+                        System.out.print("░ >> Choose: ");
+                        String bicubicSplineInterpolationChoice = scanner.nextLine().toUpperCase();
+
+                        pause();
+                        cls();
+
+                        switch (bicubicSplineInterpolationChoice) {
+                            case "1":
+                            case "BICUBIC SPLINE INTERPOLATION":
+                                boolean bicubicSplineInterpolationInput = true;
+                                while (bicubicSplineInterpolationInput) {
+
+                                    System.out.println("""
+
+
+                                        █▄▄ █ █▀▀ █░█ █▄▄ █ █▀▀   █▀ █▀█ █░░ █ █▄░█ █▀▀
+                                        █▄█ █ █▄▄ █▄█ █▄█ █ █▄▄   ▄█ █▀▀ █▄▄ █ █░▀█ ██▄
+                                        
+                                        █ █▄░█ ▀█▀ █▀▀ █▀█ █▀█ █▀█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                        █ █░▀█ ░█░ ██▄ █▀▄ █▀▀ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+
+                                    System.out.print("░ >> Choose: ");
+                                    String bicubicSplineInterpolationInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (bicubicSplineInterpolationInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+                                                
+                                                █▄▄ █ █▀▀ █░█ █▄▄ █ █▀▀   █▀ █▀█ █░░ █ █▄░█ █▀▀
+                                                █▄█ █ █▄▄ █▄█ █▄█ █ █▄▄   ▄█ █▀▀ █▄▄ █ █░▀█ ██▄
+                                                
+                                                █ █▄░█ ▀█▀ █▀▀ █▀█ █▀█ █▀█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                                █ █░▀█ ░█░ ██▄ █▀▄ █▀▀ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█
+
+
+                                                """);
+                                            break;
+
+                                        case "2":
+                                        case "FILE":
+                                            System.out.println("""
+                                                
+                                                █▄▄ █ █▀▀ █░█ █▄▄ █ █▀▀   █▀ █▀█ █░░ █ █▄░█ █▀▀
+                                                █▄█ █ █▄▄ █▄█ █▄█ █ █▄▄   ▄█ █▀▀ █▄▄ █ █░▀█ ██▄
+                                                
+                                                █ █▄░█ ▀█▀ █▀▀ █▀█ █▀█ █▀█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                                                █ █░▀█ ░█░ ██▄ █▀▄ █▀▀ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█
+
+
+                                                """);
+                                            break;
+
+                                        case "3":
+                                        case "BACK":
+                                            bicubicSplineInterpolationInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
+                                break;
+
+                            case "2":
+                            case "BACK":
+                                bicubicSplineInterpolationMenu = false;
+                                break;
+
+                            default:
+                                System.out.println("Invalid.");
+                        }
+
+                    }
                     break;
 
                 case "7":
                 case "MULTIPLE LINEAR REGRESSION":
-                    // Regresi
+                    boolean mlRegressionMenu = true;
+                    while (mlRegressionMenu) {
+                        System.out.println("""
+
+                            █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▀▀   █░░ █ █▄░█ █▀▀ ▄▀█ █▀█
+                            █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ██▄   █▄▄ █ █░▀█ ██▄ █▀█ █▀▄
+                            
+                            █▀█ █▀▀ █▀▀ █▀█ █▀▀ █▀ █▀ █ █▀█ █▄░█
+                            █▀▄ ██▄ █▄█ █▀▄ ██▄ ▄█ ▄█ █ █▄█ █░▀█
+
+                            ░ 1. Multiple Linear Regression
+                            ░ 2. Back
+                            """);
+
+                        System.out.print("░ >> Choose: ");
+                        String mlRegressionChoice = scanner.nextLine().toUpperCase();
+
+                        pause();
+                        cls();
+
+                        switch (mlRegressionChoice) {
+                            case "1":
+                            case "MULTIPLE LINEAR REGRESSION":
+                                boolean mlRegressionInput = true;
+                                while (mlRegressionInput) {
+
+                                    System.out.println("""
+
+
+                                        █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▀▀   █░░ █ █▄░█ █▀▀ ▄▀█ █▀█
+                                        █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ██▄   █▄▄ █ █░▀█ ██▄ █▀█ █▀▄
+                                        
+                                        █▀█ █▀▀ █▀▀ █▀█ █▀▀ █▀ █▀ █ █▀█ █▄░█
+                                        █▀▄ ██▄ █▄█ █▀▄ ██▄ ▄█ ▄█ █ █▄█ █░▀█
+
+                                        ░ Source of Input:
+                                        ───────────────────
+
+                                        ░ 1. Keyboard
+                                        ░ 2. File
+                                        ░ 3. Back
+                                        """);
+
+                                    System.out.print("░ >> Choose: ");
+                                    String mlRegressionInputChoice = scanner.nextLine().toUpperCase();
+
+                                    pause();
+                                    cls();
+
+                                    switch (mlRegressionInputChoice){
+                                        case "1":
+                                        case "KEYBOARD":
+                                            System.out.println("""
+                                                
+                                                █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▀▀   █░░ █ █▄░█ █▀▀ ▄▀█ █▀█
+                                                █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ██▄   █▄▄ █ █░▀█ ██▄ █▀█ █▀▄
+                                                
+                                                █▀█ █▀▀ █▀▀ █▀█ █▀▀ █▀ █▀ █ █▀█ █▄░█
+                                                █▀▄ ██▄ █▄█ █▀▄ ██▄ ▄█ ▄█ █ █▄█ █░▀█
+
+
+                                                """);
+                                            break;
+
+                                        case "2":
+                                        case "FILE":
+                                            System.out.println("""
+                                                
+                                                █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▀▀   █░░ █ █▄░█ █▀▀ ▄▀█ █▀█
+                                                █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ██▄   █▄▄ █ █░▀█ ██▄ █▀█ █▀▄
+                                                
+                                                █▀█ █▀▀ █▀▀ █▀█ █▀▀ █▀ █▀ █ █▀█ █▄░█
+                                                █▀▄ ██▄ █▄█ █▀▄ ██▄ ▄█ ▄█ █ █▄█ █░▀█
+
+
+                                                """);
+                                            break;
+
+                                        case "3":
+                                        case "BACK":
+                                            mlRegressionInput = false;
+                                            break;
+
+                                        default:
+                                            System.out.println("Invalid.");
+                                    }
+                                }
+                                break;
+
+                            case "2":
+                            case "BACK":
+                                mlRegressionMenu = false;
+                                break;
+
+                            default:
+                                System.out.println("Invalid.");
+                        }
+
+                    }
                     break;
                 
                 case "8":
