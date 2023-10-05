@@ -165,10 +165,10 @@ public class SPL {
             }
 
             if (idx == -1) {
-                det = Determinant.CalcDeterminant(main);
+                det = Determinant.CofactorExp(main);
             }
             else {
-                x[idx] = Determinant.CalcDeterminant(main) / det;
+                x[idx] = Determinant.CofactorExp(main) / det;
             }
         }
 
