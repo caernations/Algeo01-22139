@@ -9,7 +9,7 @@ public class Regression {
         }
         result[persrow][n] = sumY;
     }
-    public static void RegresiMatrix(double[][] matrix) {
+    public static double RegresiMatrix(double[][] matrix, double[][] taksirX, String persamaan) {
         int m = matrix.length;
         int n = matrix[0].length;
 
@@ -60,35 +60,25 @@ public class Regression {
         SPL.GaussJordan(result, solutions);
 
         //print solutions
-        System.out.print("f(x) = " + solutions[0]);
+        persamaan = "f(x) = " + solutions[0];
         for (int i = 1; i < n; i++) {
             if (solutions[i] < 0) {
-                System.out.print(" - ");
+                persamaan += " - ";
             } else {
-                System.out.print(" + ");
+                persamaan += " + ";
             }
-            System.out.print(Math.abs(solutions[i]) + "x" + i);
+            persamaan += Math.abs(solutions[i]) + "x" + i;
         }
         System.out.println("\r");
 
-        //input dan output estimasi nilai. OPSIONAL
         Scanner scanner = new Scanner(System.in);
         double est = solutions[0]; //estimated
 
-        System.out.print("Apakah ingin mengestimasi nilai (Y/N)? ");
-        String choice = scanner.nextLine().toUpperCase();
-
-        switch (choice) {
-            case "Y":
                 for (int i = 1; i < n; i++) {
                     System.out.print("Masukkan X" + i + " = ");
-                    est += (scanner.nextDouble() * solutions[i]);
+                    est += (taksirX[i - 1][0] * solutions[i]);
                 }
-                System.out.println("f(xk) = " + est);
-                break;
 
-            case "N" :
-                break;
-        }
-    }
+        return est;
+    }    
 }

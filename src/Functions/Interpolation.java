@@ -3,7 +3,7 @@ import Matrices.*;
 import Operations.*;
 
 public class Interpolation {
-	public static void Polynomial(double[][] titik, double a) {
+	public static double Polynomial(double[][] titik, double a) {
 		// input matriksnya berbentuk double[derajat+1][2]
 
 		int derajat = titik.length - 1;
@@ -27,11 +27,10 @@ public class Interpolation {
 			hasil += (matriks[i][derajat+1] * Math.pow(a, i));
 		}
 
-		System.out.printf("Hasil taksiran adalah %.2f", hasil);
-		System.out.println();
+		return hasil;
 	}
 
-	public static void BicubicSpline(double[][] input, double a, double b) {
+	public static double BicubicSpline(double[][] input, double a, double b) {
 		// input matriksnya berbentuk double[4][4]
 		// dari kiri ke kanan urutan tiitknya adalah (0,0), (1,0), (0,1), (1,1)
 		// dari atas ke bawah urutannya adalah nilai original, nilai turunan di x, nilai turunan di y, nilai turunan di keduanya
@@ -109,8 +108,7 @@ public class Interpolation {
 			}
 		}
 
-		System.out.printf("Hasil taksirannya adalah %.2f", hasil);
-		System.out.println();
+		return hasil;
 	}
 }
 
