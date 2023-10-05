@@ -132,16 +132,21 @@ public class SPL {
             }
         }
 
-        for (int i = 0; i < row; i ++) {
-            matriksb[i][0] = matrix[i][col-1];
+        if (Determinant.CofactorExp(matriksA) == 0) {
+            System.out.println("Matriks tidak memiliki balikan sehingga tidak valid.");
         }
+        else {
+            for (int i = 0; i < row; i ++) {
+                matriksb[i][0] = matrix[i][col-1];
+            }
 
-        //x = x = A-1 x B
-        result = Multiplies.MultiplyMatrix(Inverse.OBE(matriksA), matriksb);
+            //x = x = A-1 x B
+            result = Multiplies.MultiplyMatrix(Inverse.OBE(matriksA), matriksb);
 
-        //print solusi
-        for (int i = 0; i < col - 1; i++) {
-            System.out.println("X" + (i+1) + "= " + result[i][0]);
+            //print solusi
+            for (int i = 0; i < col - 1; i++) {
+                System.out.println("X" + (i+1) + "= " + result[i][0]);
+            }
         }
     }
 
