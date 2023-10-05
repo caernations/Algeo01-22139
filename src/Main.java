@@ -4,6 +4,7 @@ import Matrices.MatricesIO;
 import Matrices.PrintMatrices;
 import Matrices.ReadMatrices;
 import Operations.*;
+import Functions.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -1355,7 +1356,6 @@ public class Main {
 
                 case "2":
                 case "SYSTEM OF LINEAR EQUATIONS":
-                    // SPL
                     boolean splMenu = true;
                     while (splMenu) {
                         System.out.println("""
@@ -1424,6 +1424,62 @@ public class Main {
 
 
                                                 """);
+                                            System.out.println("""
+                                                ─────────────────────
+                                                ░  M A T R I X  : ░
+                                                ─────────────────────
+                                                """);
+                                            
+                                            double[][] matrix2Ai = ReadMatrices.Keyboard();
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
+                                                """);
+                                            double[] solutions = new double[matrix2Ai[0].length - 1];
+                                            SPL.Gauss(matrix2Ai, solutions);
+
+                                            if (solutions != null) {
+                                                System.out.println("\n>> Solusi SPL:");
+                            
+                                                for (int i = 0; i < solutions.length; i++) {
+                                                    System.out.println("X" + (i + 1) + " = " + solutions[i]);
+                                                }
+                                                
+                                            }
+
+                                            PrintMatrices.Print(matrix2Ai);
+                            
+                                            pause();
+                            
+                                            System.out.println("""
+                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                """);
+                                            System.out.print(">> ");
+                                            String saveChoice = scanner.nextLine().toUpperCase();
+                                            if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                System.out.print(">> Save as: ");
+                                                String outputFileName = scanner.nextLine();
+                                                StringBuilder result = new StringBuilder("Solusi SPL:\n");
+                                                
+                                                for (int i = 0; i < solutions.length; i++) {
+                                                    result.append("X").append(i + 1).append(" = ").append(solutions[i]).append("\n");
+                                                }
+                                                
+                                                MatricesIO.SaveStringToFile(result.toString(), outputFileName);
+                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                
+                                            } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                System.out.println("Not saved.");
+                                            } else {
+                                                System.out.println("Invalid.");
+                                            }
+                            
+                                            pause();
+                                            cls();
+                            
                                             break;
 
                                         case "2":
@@ -1438,6 +1494,79 @@ public class Main {
 
 
                                                 """);
+
+                                            System.out.print("░ >> Matrix file name: ");
+                                            String inputFileName1 = scanner.nextLine().trim();
+                                            if (inputFileName1.isEmpty()) {
+                                                System.out.println("Invalid.");
+                                                pause();
+                                                cls();
+                                                continue;
+                                            }
+                                            double[][] matrix2Aii = MatricesIO.FileToMatrix(inputFileName1);
+                                            
+                                            if (matrix2Aii == null) { 
+                                                continue; 
+                                            }                                            
+                                            
+
+                                            System.out.println("""
+
+
+                                                ──────────────────
+                                                ░  M A T R I X : ░
+                                                ──────────────────""");
+                                            PrintMatrices.Print(matrix2Aii);
+
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
+                                                """);
+
+                                            SPL.Gauss(matrix2Aii, new double[matrix2Aii[0].length - 1]);
+
+                                            double[] solutionsFile = new double[matrix2Aii[0].length - 1];
+                                            SPL.Gauss(matrix2Aii, solutionsFile);
+                            
+                                            if (solutionsFile != null) {
+                                                System.out.println("\n>> Solusi SPL:");
+                            
+                                                for (int i = 0; i < solutionsFile.length; i++) {
+                                                    System.out.println("X" + (i + 1) + " = " + solutionsFile[i]);
+                                                }
+                                            }
+                            
+                                            pause();
+
+                                            System.out.println("""
+                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                """);
+                                            
+                                            System.out.print(">> ");
+                                            String saveChoiceFile = scanner.nextLine().toUpperCase();
+                                            if (saveChoiceFile.equals("Y") || saveChoiceFile.equals("YAY")) {
+                                                System.out.print(">> Save as: ");
+                                                String outputFileName = scanner.nextLine();
+                                                StringBuilder result = new StringBuilder("Solusi SPL:\n");
+                                                
+                                                for (int i = 0; i < solutionsFile.length; i++) {
+                                                    result.append("X").append(i + 1).append(" = ").append(solutionsFile[i]).append("\n");
+                                                }
+                                                
+                                                MatricesIO.SaveStringToFile(result.toString(), outputFileName);
+                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                            } else if (saveChoiceFile.equals("N") || saveChoiceFile.equals("NAY")){
+                                                System.out.println("Not saved.");
+                                            } else {
+                                                System.out.println("Invalid.");
+                                            }
+                            
+                                            pause();
+                                            cls();
+                            
                                             break;
 
                                         case "3":
@@ -1490,6 +1619,62 @@ public class Main {
 
 
                                                 """);
+                                            System.out.println("""
+                                                ─────────────────────
+                                                ░  M A T R I X  : ░
+                                                ─────────────────────
+                                                """);
+                                            
+                                            double[][] matrix2Bi = ReadMatrices.Keyboard();
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
+                                                """);
+                                            double[] solutions = new double[matrix2Bi[0].length - 1];
+                                            SPL.GaussJordan(matrix2Bi, solutions);
+
+                                            if (solutions != null) {
+                                                System.out.println("\n>> Solusi SPL:");
+                            
+                                                for (int i = 0; i < solutions.length; i++) {
+                                                    System.out.println("X" + (i + 1) + " = " + solutions[i]);
+                                                }
+                                                
+                                            }
+
+                                            PrintMatrices.Print(matrix2Bi);
+                            
+                                            pause();
+                            
+                                            System.out.println("""
+                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                """);
+                                            System.out.print(">> ");
+                                            String saveChoice = scanner.nextLine().toUpperCase();
+                                            if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                System.out.print(">> Save as: ");
+                                                String outputFileName = scanner.nextLine();
+                                                StringBuilder result = new StringBuilder("Solusi SPL:\n");
+                                                
+                                                for (int i = 0; i < solutions.length; i++) {
+                                                    result.append("X").append(i + 1).append(" = ").append(solutions[i]).append("\n");
+                                                }
+                                                
+                                                MatricesIO.SaveStringToFile(result.toString(), outputFileName);
+                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                
+                                            } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                System.out.println("Not saved.");
+                                            } else {
+                                                System.out.println("Invalid.");
+                                            }
+                            
+                                            pause();
+                                            cls();
+                            
                                             break;
 
                                         case "2":
@@ -1504,6 +1689,79 @@ public class Main {
 
 
                                                 """);
+
+                                            System.out.print("░ >> Matrix file name: ");
+                                            String inputFileName1 = scanner.nextLine().trim();
+                                            if (inputFileName1.isEmpty()) {
+                                                System.out.println("Invalid.");
+                                                pause();
+                                                cls();
+                                                continue;
+                                            }
+                                            double[][] matrix2Bii = MatricesIO.FileToMatrix(inputFileName1);
+                                            
+                                            if (matrix2Bii == null) { 
+                                                continue; 
+                                            }                                            
+                                            
+
+                                            System.out.println("""
+
+
+                                                ──────────────────
+                                                ░  M A T R I X : ░
+                                                ──────────────────""");
+                                            PrintMatrices.Print(matrix2Bii);
+
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
+                                                """);
+
+                                            SPL.GaussJordan(matrix2Bii, new double[matrix2Bii[0].length - 1]);
+
+                                            double[] solutionsFileB = new double[matrix2Bii[0].length - 1];
+                                            SPL.GaussJordan(matrix2Bii, solutionsFileB);
+                            
+                                            if (solutionsFileB != null) {
+                                                System.out.println("\n>> Solusi SPL:");
+                            
+                                                for (int i = 0; i < solutionsFileB.length; i++) {
+                                                    System.out.println("X" + (i + 1) + " = " + solutionsFileB[i]);
+                                                }
+                                            }
+                            
+                                            pause();
+
+                                            System.out.println("""
+                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                """);
+                                            
+                                            System.out.print(">> ");
+                                            String saveChoiceFile = scanner.nextLine().toUpperCase();
+                                            if (saveChoiceFile.equals("Y") || saveChoiceFile.equals("YAY")) {
+                                                System.out.print(">> Save as: ");
+                                                String outputFileName = scanner.nextLine();
+                                                StringBuilder result = new StringBuilder("Solusi SPL:\n");
+                                                
+                                                for (int i = 0; i < solutionsFileB.length; i++) {
+                                                    result.append("X").append(i + 1).append(" = ").append(solutionsFileB[i]).append("\n");
+                                                }
+                                                
+                                                MatricesIO.SaveStringToFile(result.toString(), outputFileName);
+                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                            } else if (saveChoiceFile.equals("N") || saveChoiceFile.equals("NAY")){
+                                                System.out.println("Not saved.");
+                                            } else {
+                                                System.out.println("Invalid.");
+                                            }
+                            
+                                            pause();
+                                            cls();
+                            
                                             break;
 
                                         case "3":
@@ -1556,6 +1814,27 @@ public class Main {
 
 
                                                 """);
+                                            System.out.println("""
+                                                ───────────────────
+                                                ░  M A T R I X  : ░
+                                                ───────────────────
+                                                """);
+                            
+                                            double[][] matrix2Ci = ReadMatrices.Keyboard();
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
+                                                """);
+                            
+                                            SPL.MatriksBalikan(matrix2Ci);
+                                            PrintMatrices.Print(matrix2Ci);
+
+                                            //save
+
+                                            pause();
+                                            cls();
                                             break;
 
                                         case "2":
@@ -1570,6 +1849,39 @@ public class Main {
 
 
                                                 """);
+                            
+                                            System.out.print("░ >> Matrix file name: ");
+                                            String inputFileNameInverse = scanner.nextLine().trim();
+                                            if (inputFileNameInverse.isEmpty()) {
+                                                System.out.println("Invalid.");
+                                                pause();
+                                                cls();
+                                                continue;
+                                            }
+                                            double[][] matrix2Cii = MatricesIO.FileToMatrix(inputFileNameInverse);
+                            
+                                            if (matrix2Cii == null) {
+                                                continue;
+                                            }
+                            
+                                            System.out.println("""
+                            
+                                                ──────────────────
+                                                ░  M A T R I X : ░
+                                                ──────────────────""");
+                                            PrintMatrices.Print(matrix2Cii);
+                            
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
+                                                """);
+                            
+                                            SPL.MatriksBalikan(matrix2Cii);
+                            
+                                            // save
+                                            pause();
                                             break;
 
                                         case "3":
@@ -1616,6 +1928,24 @@ public class Main {
 
 
                                                 """);
+                                       
+                                            System.out.println("""
+                                                ─────────────────────
+                                                ░  M A T R I X  : ░
+                                                ─────────────────────
+                                                """);
+                            
+                                            double[][] matrix2Di = ReadMatrices.Keyboard();
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
+                                                """);
+                            
+                                            SPL.Cramer(matrix2Di);
+                            
+                                            pause();
                                             break;
 
                                         case "2":
@@ -1627,6 +1957,39 @@ public class Main {
 
 
                                                 """);
+                            
+                                            System.out.print("░ >> Matrix file name: ");
+                                            String inputFileNameCramer = scanner.nextLine().trim();
+                                            if (inputFileNameCramer.isEmpty()) {
+                                                System.out.println("Invalid.");
+                                                pause();
+                                                cls();
+                                                continue;
+                                            }
+                                            double[][] matrix2Dii = MatricesIO.FileToMatrix(inputFileNameCramer);
+                            
+                                            if (matrix2Dii == null) {
+                                                continue;
+                                            }
+                            
+                                            System.out.println("""
+                            
+                                                ──────────────────
+                                                ░  M A T R I X : ░
+                                                ──────────────────""");
+                                            PrintMatrices.Print(matrix2Dii);
+                            
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
+                                                """);
+                            
+                                            SPL.Cramer(matrix2Dii);
+                            
+                                            // save
+                                            pause();
                                             break;
 
                                         case "3":
@@ -2359,7 +2722,10 @@ public class Main {
                     System.exit(0);
 
                 default:
-                    System.out.println("Invalid.");
+                    System.out.println("Invalid Menu.");
+                    pause();
+                    cls();
+                    break;
             }
         }
     }
