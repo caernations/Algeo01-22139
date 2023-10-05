@@ -4,9 +4,10 @@ import Operations.*;
 import java.util.Scanner;
 
 public class Interpolation {
-	public static void Polynomial(double[][] titik, int derajat) {
+	public static void Polynomial(double[][] titik, double a) {
 		// input matriksnya berbentuk double[derajat+1][2]
 
+		int derajat = titik.length - 1;
 		Scanner scanner = new Scanner(System.in);
 
 		double[][] matriks = new double[derajat+1][derajat+2];
@@ -22,9 +23,6 @@ public class Interpolation {
 		}
 
 		matriks = Echelon.ReducedRowEchelon(matriks);
-
-		System.out.println("Masukkan titik x yang ingin ditaksir");
-		double a = scanner.nextDouble();
 
 		double hasil = 0;
 		for (int i = 0; i <= derajat; i++) {
