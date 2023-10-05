@@ -2706,8 +2706,7 @@ public class Main {
                                         ───────────────────
 
                                         ░ 1. Keyboard
-                                        ░ 2. File
-                                        ░ 3. Back
+                                        ░ 2. Back
                                         """);
 
                                     System.out.print("░ >> Choose: ");
@@ -2769,45 +2768,6 @@ public class Main {
                                             break;
 
                                         case "2":
-                                        case "FILE":
-                                            System.out.println("""
-                                                
-                                                █▀█ █▀█ █░░ █▄█ █▄░█ █▀█ █▀▄▀█ █ ▄▀█ █░░
-                                                █▀▀ █▄█ █▄▄ ░█░ █░▀█ █▄█ █░▀░█ █ █▀█ █▄▄
-                                                
-                                                █ █▄░█ ▀█▀ █▀▀ █▀█ █▀█ █▀█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█
-                                                █ █░▀█ ░█░ ██▄ █▀▄ █▀▀ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█
-
-
-                                                """);
-                                                System.out.print("░ >> Matrix file name: ");
-                                            String inputFileName1 = scanner.nextLine();
-                                            double[][] matrix6Aii = MatricesIO.FileToMatrix(inputFileName1);
-        
-                                            if (matrix6Aii != null) {
-                                                double resultPolinom = Interpolation.Polynomial(matrix6Aii, a);
-                            
-                                                if (!Double.isNaN(resultPolinom)) {
-
-                                                    System.out.println("""
-
-                                                        ──────────────────
-                                                        ░  M A T R I X : ░
-                                                        ──────────────────""");
-                                                    PrintMatrices.Print(matrix6Aii);
-                                                    System.out.print("""
-                                                        \n
-                                                        ─────────────────────
-                                                        ░    R E S U L T    ░
-                                                        ─────────────────────
-                                                        """);
-                                                    System.out.println("Hasil taksirannya adalah " + resultPolinom);
-                                                    pause();
-                                                }
-                                            }
-                                            break;
-
-                                        case "3":
                                         case "BACK":
                                             polynomialInterpolationInput = false;
                                             break;
@@ -2871,8 +2831,7 @@ public class Main {
                                         ───────────────────
 
                                         ░ 1. Keyboard
-                                        ░ 2. File
-                                        ░ 3. Back
+                                        ░ 2. Back
                                         """);
 
                                     System.out.print("░ >> Choose: ");
@@ -2935,45 +2894,6 @@ public class Main {
                                             break;
 
                                         case "2":
-                                        case "FILE":
-                                            System.out.println("""
-                                                
-                                                █▄▄ █ █▀▀ █░█ █▄▄ █ █▀▀   █▀ █▀█ █░░ █ █▄░█ █▀▀
-                                                █▄█ █ █▄▄ █▄█ █▄█ █ █▄▄   ▄█ █▀▀ █▄▄ █ █░▀█ ██▄
-                                                
-                                                █ █▄░█ ▀█▀ █▀▀ █▀█ █▀█ █▀█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█
-                                                █ █░▀█ ░█░ ██▄ █▀▄ █▀▀ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█
-
-
-                                                """);
-                                                System.out.print("░ >> Matrix file name: ");
-                                            String inputFileName1 = scanner.nextLine();
-                                            double[][] matrix6Aii = MatricesIO.FileToMatrix(inputFileName1);
-        
-                                            if (matrix6Aii != null) {
-                                                double resultBicubicI = Interpolation.BicubicSpline(matrix6Aii, a, b);
-                            
-                                                if (!Double.isNaN(resultBicubicI)) {
-
-                                                    System.out.println("""
-
-                                                        ──────────────────
-                                                        ░  M A T R I X : ░
-                                                        ──────────────────""");
-                                                    PrintMatrices.Print(matrix6Aii);
-                                                    System.out.print("""
-                                                        \n
-                                                        ─────────────────────
-                                                        ░    R E S U L T    ░
-                                                        ─────────────────────
-                                                        """);
-                                                    System.out.println("Hasil taksirannya adalah " + resultBicubicI);
-                                                    pause();
-                                                }
-                                            }
-                                            break;
-
-                                        case "3":
                                         case "BACK":
                                             bicubicSplineInterpolationInput = false;
                                             break;
@@ -3101,7 +3021,7 @@ public class Main {
 
                                         
 
-                                        case "3":
+                                        case "2":
                                         case "BACK":
                                             mlRegressionInput = false;
                                             break;
