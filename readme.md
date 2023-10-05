@@ -15,7 +15,3 @@ Matrix calculator adalah program yang dapat melakukan berbagai operasi dan manip
 1. Buka folder src/
 2. Compile program dengan command `javac Main.java`
 3. Jalankan program dengan `java Main`
-
-## Dokumentasi
-
-![](doc/b for bewe.jpeg)
