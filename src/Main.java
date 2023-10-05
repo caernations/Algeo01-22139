@@ -23,7 +23,7 @@ public class Main {
             ▐▓█▄▄▄▄▄▄▄▄▄█▓▌░█████░
             ░░░░▄▄███▄▄░░░░░█████░
 
-        © 2023 | Yasmin, Attara, Ikhwan | IF'22""");
+        ░ © 2023 | 13522139, 13522140, 13522147 ░""");
         System.out.println("═════════════════════════════════════════\n\n");
 
 
@@ -55,8 +55,8 @@ public class Main {
             switch (choice) {
                 case "1":
                 case "MATRICES OPERATIONS":
-                    boolean matricesMenu = true;
-                    while (matricesMenu) {
+                    boolean operationsMenu = true;
+                    while (operationsMenu) {
                         System.out.println("""
                             
                             █▀█ █▀█ █▀▀ █▀█ ▄▀█ ▀█▀ █ █▀█ █▄░█ █▀
@@ -512,6 +512,7 @@ public class Main {
                                                         ░  M A T R I X   ░
                                                         ░   T R A C E :  ░
                                                         ──────────────────
+
                                                         """);
                                                     System.out.println(">> tr = " + resultTrace);
                                                     pause();
@@ -543,18 +544,91 @@ public class Main {
 
                                                     pause();
                                                     cls();
-                                                    
+
                                                 } else {
-                                                    System.out.println("Matriks harus merupakan matriks persegi untuk menghitung trace.");
+                                                    System.out.println("Invalid: Matriks harus merupakan matriks persegi untuk menghitung trace.");
                                                 }
                                             } else {
-                                                System.out.println("Matriks harus merupakan matriks persegi untuk menghitung trace.");
+                                                System.out.println("Invalid: Matriks harus merupakan matriks persegi untuk menghitung trace.");
+                                                pause();
+                                                cls();
                                             }
 
                                             break;
 
                                         case "2":
                                         case "FILE":
+                                            System.out.println("""
+                                                
+                                                ▀█▀ █▀█ ▄▀█ █▀▀ █▀▀
+                                                ░█░ █▀▄ █▀█ █▄▄ ██▄
+
+
+                                                """);
+                                            System.out.print("░ >> Matrix file name: ");
+                                            String inputFileName1 = scanner.nextLine();
+                                            double[][] matrixC2 = MatricesIO.FileToMatrix(inputFileName1);
+        
+                                            if (matrixC2 != null) {
+                                                double resultTrace = Arithmetics.Trace(matrixC2);
+                            
+                                                if (!Double.isNaN(resultTrace)) {
+
+                                                    System.out.println("""
+
+
+                                                        ──────────────────
+                                                        ░  M A T R I X : ░
+                                                        ──────────────────""");
+                                                    PrintMatrices.Print(matrixC2);
+                                                    System.out.print("""
+                                                        \n
+                                                        ──────────────────
+                                                        ░  M A T R I X   ░
+                                                        ░   T R A C E :  ░
+                                                        ──────────────────
+
+                                                        """);
+                                                    System.out.println(">> tr = " + resultTrace);
+                                                    pause();
+
+                                                    System.out.println("""
+
+                                                    
+
+                                                        █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                        ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                        """);
+                                                    System.out.print(">> ");
+                                                    String saveChoice = scanner.nextLine().toUpperCase();
+
+                                                    if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                        System.out.print(">> Save as: ");
+                                                        String outputFileName = scanner.nextLine();
+
+                                                        String traceToSave = "tr = " + resultTrace;
+                                                        MatricesIO.SaveStringToFile(traceToSave, outputFileName);
+                                                        System.out.println(">> Saved as " + outputFileName + "!\n");
+
+                                                    } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                        System.out.println("Not saved.");
+
+                                                    } else {
+                                                        System.out.println("Invalid.");
+                                                    }
+
+                                                    pause();
+                                                    cls();
+
+                                                } else {
+                                                    System.out.println("Invalid: Matriks harus merupakan matriks persegi untuk menghitung trace.");
+                                                }
+                                            } else {
+                                                System.out.println("Invalid: Matriks harus merupakan matriks persegi untuk menghitung trace.");
+                                                pause();
+                                                cls();
+                                            }
+
                                             break;
                                         
                                         case "3":
@@ -621,29 +695,155 @@ public class Main {
 
                                                     switch (iMultiplyInputChoice){
                                                         case "1":
-                                                        case "KEYBOARD INPUT":
+                                                        case "KEYBOARD":
+                                                            System.out.println("""
+                                                            
+                                                                █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▄█
+                                                                █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ░█░
+
+                                                            
+                                                                """);
+                                                            System.out.println("""
+                                                                ─────────────────────
+                                                                ░  M A T R I X  1 : ░
+                                                                ─────────────────────
+                                                                """);
                                                             double[][] matrixiD1 = ReadMatrices.Keyboard();
+                                                            System.out.println("""
+                                                                \n
+                                                                ─────────────────────
+                                                                ░  M A T R I X  2 : ░
+                                                                ─────────────────────
+                                                                """);
                                                             double[][] matrixiD2 = ReadMatrices.Keyboard();
                                                             
-                                                            double[][] resultMultiplyMatrix = Multiplies.MultiplyMatrix(matrixiD1, matrixiD2);
-                                                        
-                                                            if (resultMultiplyMatrix == null) {
-                                                                System.out.println("Error: Jumlah kolom matriks pertama tidak sama dengan jumlah baris matriks kedua.");
+                                                            if (matrixiD1[0].length == matrixiD2.length) {
+                                                                double[][] resultMultiply = Multiplies.MultiplyMatrix(matrixiD1, matrixiD2);
+                                                                if (resultMultiply != null) {
+                                                                    System.out.print("""
+                                                                        \n
+                                                                        ────────────────────────
+                                                                        ░       H A S I L      ░
+                                                                        ░  P E R K A L I A N : ░
+                                                                        ────────────────────────
+                                                                        """);
+                                                                    PrintMatrices.Print(resultMultiply);
+
+                                                                    pause();
+
+                                                                    System.out.println("""
+
+                                                                    
+
+                                                                        █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                                        ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                                        """);
+                                                                    System.out.print(">> ");
+                                                                    String saveChoice = scanner.nextLine().toUpperCase();
+                                                                    if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                                        System.out.print(">> Save as: ");
+                                                                        String outputFileName = scanner.nextLine();
+                                                                        MatricesIO.SaveMatrixToFile(resultMultiply, outputFileName);
+                                                                        System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                                    } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                                        System.out.println("Not saved.");
+                                                                    } else {
+                                                                        System.out.println("Invalid.");
+                                                                    }
+
+                                                                    pause();
+                                                                    cls();
+
+                                                                } else {
+                                                                    System.out.println("\n>> Jumlah kolom Matrix 1 tidak sama dengan jumlah baris Matrix 2.\n>> Perkalian tidak dapat dilakukan.");
+                                                                }
                                                             } else {
-                                                                System.out.println("Matriks pertama:");
-                                                                PrintMatrices.Print(matrixiD1);
-                                                        
-                                                                System.out.println("Matriks kedua:");
-                                                                PrintMatrices.Print(matrixiD2);
-                                                        
-                                                                System.out.println("Hasil perkalian matriks: ");
-                                                                PrintMatrices.Print(resultMultiplyMatrix);
+                                                                System.out.println("\n>> Jumlah kolom Matrix 1 tidak sama dengan jumlah baris Matrix 2.\n>> Perkalian tidak dapat dilakukan.");
+                                                                pause();
+                                                                cls();
                                                             }
+
                                                             break;
                                                         
                                                         case "2":
-                                                        case "FILE INPUT":
-                                                            break;
+                                                        case "FILE":
+                                                            System.out.println("""
+                                                            
+                                                                █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▄█
+                                                                █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ░█░
+
+                                                            
+                                                                """);
+                                                            System.out.print("░ >> Matrix 1 file name: ");
+                                                            String inputFileName1 = scanner.nextLine();
+                                                            double[][] matrixiD3 = MatricesIO.FileToMatrix(inputFileName1);
+                                                            System.out.print("░ >> Matrix 2 file name: ");
+                                                            String inputFileName2 = scanner.nextLine();
+                                                            double[][] matrixiD4 = MatricesIO.FileToMatrix(inputFileName2);
+
+                                                            if (matrixiD3 != null && matrixiD4 != null){
+
+                                                                System.out.println("""
+
+
+                                                                    ─────────────────────
+                                                                    ░  M A T R I X  1 : ░
+                                                                    ─────────────────────""");
+                                                                PrintMatrices.Print(matrixiD3);
+                                                                System.out.println("""
+
+                                                                    ─────────────────────
+                                                                    ░  M A T R I X  2 : ░
+                                                                    ─────────────────────""");
+                                                                PrintMatrices.Print(matrixiD4);
+
+                                                                if (matrixiD3[0].length == matrixiD4.length) {
+                                                                    double[][] resultMultiply = Multiplies.MultiplyMatrix(matrixiD3, matrixiD4);
+                                                                    if (resultMultiply != null) {
+                                                                        System.out.print("""
+                                                                            \n
+                                                                            ────────────────────────
+                                                                            ░       H A S I L      ░
+                                                                            ░  P E R K A L I A N : ░
+                                                                            ────────────────────────
+                                                                            """);
+                                                                        PrintMatrices.Print(resultMultiply);
+
+                                                                        pause();
+
+                                                                        System.out.println("""
+
+                                                                        
+
+                                                                            █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                                            ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                                            """);
+                                                                        System.out.print(">> ");
+                                                                        String saveChoice = scanner.nextLine().toUpperCase();
+                                                                        if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                                            System.out.print(">> Save as: ");
+                                                                            String outputFileName = scanner.nextLine();
+                                                                            MatricesIO.SaveMatrixToFile(resultMultiply, outputFileName);
+                                                                            System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                                        } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                                            System.out.println("Not saved.");
+                                                                        } else {
+                                                                            System.out.println("Invalid.");
+                                                                        }
+
+                                                                        pause();
+                                                                        cls();
+
+                                                                    } else {
+                                                                        System.out.println("\n>> Jumlah kolom Matrix 1 tidak sama dengan jumlah baris Matrix 2.\n>> Perkalian tidak dapat dilakukan.");
+                                                                    }
+                                                                } else {
+                                                                    System.out.println("\n>> Jumlah kolom Matrix 1 tidak sama dengan jumlah baris Matrix 2.\n>> Perkalian tidak dapat dilakukan.");
+                                                                    pause();
+                                                                    cls();
+                                                                }
+                                                            }
+                                                                break;
 
                                                         case "3":
                                                         case "BACK":
@@ -681,22 +881,140 @@ public class Main {
 
                                                 switch (iiMultiplyInputChoice){
                                                     case "1":
-                                                    case "KEYBOARD INPUT":
+                                                    case "KEYBOARD":
+                                                        System.out.println("""
+                                                        
+                                                            █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▄█
+                                                            █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ░█░
+                                                            
+                                                            █▄▄ █▄█   █▀▀ █▀█ █▄░█ █▀ ▀█▀ ▄▀█ █▄░█ ▀█▀
+                                                            █▄█ ░█░   █▄▄ █▄█ █░▀█ ▄█ ░█░ █▀█ █░▀█ ░█░
+
+
+                                                            """);
+                                                        System.out.println("""
+                                                            ───────────────────
+                                                            ░  M A T R I X  : ░
+                                                            ───────────────────
+                                                            """);
                                                         double[][] matrixiiD1 = ReadMatrices.Keyboard();
 
-                                                        System.out.println("Constanta: ");
+                                                        System.out.print("""
+
+                                                            ───────────────────────
+                                                            ░  C O N S T A N T  : ░
+                                                            ───────────────────────\n""");
                                                         double constant = scanner.nextDouble();
                                                         scanner.nextLine();
                                                         
                                                         double[][] resultMultiplyMatrixByConstant = Multiplies.MultiplyMatrixByConstant(matrixiiD1, constant);
 
-                                                        System.out.println("Result:");
+                                                        System.out.print("""
+                                                            \n
+                                                             ────────────────────────
+                                                            ░       H A S I L      ░
+                                                            ░  P E R K A L I A N : ░
+                                                            ────────────────────────
+                                                                """);
                                                         PrintMatrices.Print(resultMultiplyMatrixByConstant);
+
+                                                        pause();
+
+                                                        System.out.println("""
+                                                                
+
+
+                                                            █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                            ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                            """);
+                                                        System.out.print(">> ");
+                                                        String saveChoice = scanner.nextLine().toUpperCase();
+                                                        if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                            System.out.print(">> Save as: ");
+                                                            String outputFileName = scanner.nextLine();
+                                                            MatricesIO.SaveMatrixToFile(resultMultiplyMatrixByConstant, outputFileName);
+                                                            System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                        } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                            System.out.println("Not saved.");
+                                                        } else {
+                                                            System.out.println("Invalid.");
+                                                        }
+
+                                                        pause();
+                                                        cls();
+
                                                         break;
 
                                                     case "2":
-                                                    case "FILE INPUT":
-                                                        break;
+                                                    case "FILE":
+                                                        System.out.println("""
+                                                        
+                                                            █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▄█
+                                                            █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ░█░
+                                                            
+                                                            █▄▄ █▄█   █▀▀ █▀█ █▄░█ █▀ ▀█▀ ▄▀█ █▄░█ ▀█▀
+                                                            █▄█ ░█░   █▄▄ █▄█ █░▀█ ▄█ ░█░ █▀█ █░▀█ ░█░
+
+                                                            
+                                                            """);
+                                                        System.out.print("░ >> Matrix 1 file name: ");
+                                                        String inputFileName1 = scanner.nextLine();
+                                                        double[][] matrixiiD2 = MatricesIO.FileToMatrix(inputFileName1);
+
+                                                        if(matrixiiD2 != null){
+                                                            System.out.println("""
+
+
+                                                                ─────────────────────
+                                                                ░  M A T R I X  1 : ░
+                                                                ─────────────────────""");
+                                                            PrintMatrices.Print(matrixiiD2);
+                                                            System.out.print("""
+
+                                                                ───────────────────────
+                                                                ░  C O N S T A N T  : ░
+                                                                ───────────────────────\n""");
+                                                            double constantF = scanner.nextDouble();
+                                                            scanner.nextLine();
+                                                            
+                                                            double[][] resultMultiplyMatrixByConstantF = Multiplies.MultiplyMatrixByConstant(matrixiiD2, constantF);
+
+                                                            System.out.print("""
+                                                                \n
+                                                                ────────────────────────
+                                                                ░       H A S I L      ░
+                                                                ░  P E R K A L I A N : ░
+                                                                ────────────────────────
+                                                                    """);
+                                                            PrintMatrices.Print(resultMultiplyMatrixByConstantF);
+
+                                                            pause();
+
+                                                            System.out.println("""
+                                                                    
+
+
+                                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                                """);
+                                                            System.out.print(">> ");
+                                                            String saveChoiceF = scanner.nextLine().toUpperCase();
+                                                            if (saveChoiceF.equals("Y") || saveChoiceF.equals("YAY")) {
+                                                                System.out.print(">> Save as: ");
+                                                                String outputFileName = scanner.nextLine();
+                                                                MatricesIO.SaveMatrixToFile(resultMultiplyMatrixByConstantF, outputFileName);
+                                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                            } else if (saveChoiceF.equals("N") || saveChoiceF.equals("NAY")){
+                                                                System.out.println("Not saved.");
+                                                            } else {
+                                                                System.out.println("Invalid.");
+                                                            }
+
+                                                            pause();
+                                                            cls();
+
+                                                            break;
+                                                        }
 
                                                     case "3":
                                                     case "BACK":
@@ -735,28 +1053,205 @@ public class Main {
 
                                                 switch (iiiMultiplyInputChoice){
                                                     case "1":
-                                                    case "KEYBOARD INPUT":
-                                                        double[][] matrix1 = ReadMatrices.Keyboard();
-                                                        double[][] matrix2 = ReadMatrices.Keyboard();
+                                                    case "KEYBOARD":
+                                                        System.out.println("""
+                                                        
+                                                            █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▄█
+                                                            █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ░█░
+                                                        
+                                                            █░█░█ █ ▀█▀ █░█   █▀▄▀█ █▀█ █▀▄
+                                                            ▀▄▀▄▀ █ ░█░ █▀█   █░▀░█ █▄█ █▄▀
 
-                                                        System.out.println("Enter the mod value: ");
-                                                        double mod = scanner.nextDouble();
-                                                        scanner.nextLine();
 
-                                                        if (matrix1[0].length != matrix2.length) {
-                                                            System.out.println("Error: Jumlah kolom matriks pertama tidak sama dengan jumlah baris matriks kedua.");
-                                                        } else {
-                                                            double[][] resultMultiplyMatrixWithMod = Multiplies.MultiplyMatrixWithMod(matrix1, matrix2, mod);
+                                                            """);
+                                                            System.out.println("""
+                                                                ─────────────────────
+                                                                ░  M A T R I X  1 : ░
+                                                                ─────────────────────
+                                                                """);
+                                                            double[][] matrixiiiD1 = ReadMatrices.Keyboard();
+                                                            System.out.println("""
+                                                                \n
+                                                                ─────────────────────
+                                                                ░  M A T R I X  2 : ░
+                                                                ─────────────────────
+                                                                """);
+                                                            double[][] matrixiiiD2 = ReadMatrices.Keyboard();
 
-                                                            System.out.println("Result:");
-                                                            PrintMatrices.Print(resultMultiplyMatrixWithMod);
+                                                            double[][] resultMultiplyMatrixii = Multiplies.MultiplyMatrix(matrixiiiD1, matrixiiiD2);
+                                                            if (resultMultiplyMatrixii != null) {
+                                                                System.out.print("""
+                                                                    \n
+                                                                    ────────────────────────
+                                                                    ░       H A S I L      ░
+                                                                    ░  P E R K A L I A N : ░
+                                                                    ────────────────────────
+                                                                    """);
+                                                            PrintMatrices.Print(resultMultiplyMatrixii);
+
+                                                            System.out.println("""
+                                                                \n
+                                                                ───────────────────────
+                                                                ░  M O D  V A L U E : ░
+                                                                ───────────────────────
+                                                                """);
+
+                                                            double mod = scanner.nextDouble();
+                                                            scanner.nextLine();
+                                                            
+                                                            if (matrixiiiD1[0].length == matrixiiiD2.length) {
+                                                                double[][] resultMultiplyMatrixWithMod = Multiplies.MultiplyMatrixWithMod(matrixiiiD1, matrixiiiD2, mod);
+                                                                if (resultMultiplyMatrixWithMod != null) {
+                                                                    System.out.print("""
+                                                                        \n
+                                                                        ─────────────────────────
+                                                                        ░        H A S I L      ░
+                                                                        ░   P E R K A L I A N   ░
+                                                                        ░  D E N G A N  M O D : ░
+                                                                        ─────────────────────────
+                                                                        """);
+                                                                    PrintMatrices.Print(resultMultiplyMatrixWithMod);
+
+                                                                    pause();
+
+                                                                    System.out.println("""
+
+                                                                    
+
+                                                                        █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                                        ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                                        """);
+                                                                    System.out.print(">> ");
+                                                                    String saveChoice = scanner.nextLine().toUpperCase();
+                                                                    if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                                        System.out.print(">> Save as: ");
+                                                                        String outputFileName = scanner.nextLine();
+                                                                        MatricesIO.SaveMatrixToFile(resultMultiplyMatrixWithMod, outputFileName);
+                                                                        System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                                    } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                                        System.out.println("Not saved.");
+                                                                    } else {
+                                                                        System.out.println("Invalid.");
+                                                                    }
+
+                                                                    pause();
+                                                                    cls();
+
+                                                                } else {
+                                                                    System.out.println("\n>> Jumlah kolom Matrix 1 tidak sama dengan jumlah baris Matrix 2.\n>> Perkalian tidak dapat dilakukan.");
+                                                                }
+                                                            } else {
+                                                                System.out.println("\n>> Jumlah kolom Matrix 1 tidak sama dengan jumlah baris Matrix 2.\n>> Perkalian tidak dapat dilakukan.");
+                                                                pause();
+                                                                cls();
+                                                            }
                                                         }
-                                                        break;
+
+                                                            break;
 
                                                     case "2":
-                                                    case "FILE INPUT":
+                                                    case "FILE":
+                                                        System.out.println("""
+                                                        
+                                                            █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▄█
+                                                            █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ░█░
+                                                        
+                                                            █░█░█ █ ▀█▀ █░█   █▀▄▀█ █▀█ █▀▄
+                                                            ▀▄▀▄▀ █ ░█░ █▀█   █░▀░█ █▄█ █▄▀
 
-                                                        break;
+
+                                                            """);
+                                                            System.out.print("░ >> Matrix 1 file name: ");
+                                                            String inputFileName1 = scanner.nextLine();
+                                                            double[][] matrixiiiD3 = MatricesIO.FileToMatrix(inputFileName1);
+                                                            System.out.print("░ >> Matrix 2 file name: ");
+                                                            String inputFileName2 = scanner.nextLine();
+                                                            double[][] matrixiiiD4 = MatricesIO.FileToMatrix(inputFileName2);
+
+                                                            if (matrixiiiD3 != null && matrixiiiD4 != null){
+
+                                                                System.out.println("""
+
+
+                                                                    ─────────────────────
+                                                                    ░  M A T R I X  1 : ░
+                                                                    ─────────────────────""");
+                                                                PrintMatrices.Print(matrixiiiD3);
+                                                                System.out.println("""
+
+                                                                    ─────────────────────
+                                                                    ░  M A T R I X  2 : ░
+                                                                    ─────────────────────""");
+                                                                PrintMatrices.Print(matrixiiiD4);
+                                                                double[][] resultMultiplyMatrixiii = Multiplies.MultiplyMatrix(matrixiiiD3, matrixiiiD4);
+                                                                if (resultMultiplyMatrixiii != null) {
+                                                                    System.out.print("""
+                                                                        \n
+                                                                        ────────────────────────
+                                                                        ░       H A S I L      ░
+                                                                        ░  P E R K A L I A N : ░
+                                                                        ────────────────────────
+                                                                        """);
+                                                                    PrintMatrices.Print(resultMultiplyMatrixiii);
+                                                                if (matrixiiiD3[0].length == matrixiiiD4.length) {
+                                                                    System.out.println("""
+                                                                        \n
+                                                                        ───────────────────────
+                                                                        ░  M O D  V A L U E : ░
+                                                                        ───────────────────────
+                                                                        """);
+
+                                                                    double modF = scanner.nextDouble();
+                                                                    double[][] resultMultiplyMatrixWithModF = Multiplies.MultiplyMatrixWithMod(matrixiiiD3, matrixiiiD4, modF);
+                                                                    scanner.nextLine();
+
+                                                                    if (resultMultiplyMatrixWithModF != null) {
+                                                                        System.out.print("""
+                                                                            \n
+                                                                            ─────────────────────────
+                                                                            ░        H A S I L      ░
+                                                                            ░   P E R K A L I A N   ░
+                                                                            ░  D E N G A N  M O D : ░
+                                                                            ─────────────────────────
+                                                                            """);
+                                                                        PrintMatrices.Print(resultMultiplyMatrixWithModF);
+
+                                                                        pause();
+
+                                                                        System.out.println("""
+
+                                                                        
+
+                                                                            █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                                            ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                                            """);
+                                                                        System.out.print(">> ");
+                                                                        String saveChoice = scanner.nextLine().toUpperCase();
+                                                                        if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                                            System.out.print(">> Save as: ");
+                                                                            String outputFileName = scanner.nextLine();
+                                                                            MatricesIO.SaveMatrixToFile(resultMultiplyMatrixWithModF, outputFileName);
+                                                                            System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                                        } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                                            System.out.println("Not saved.");
+                                                                        } else {
+                                                                            System.out.println("Invalid.");
+                                                                        }
+
+                                                                        pause();
+                                                                        cls();
+
+                                                                    } else {
+                                                                        System.out.println("\n>> Jumlah kolom Matrix 1 tidak sama dengan jumlah baris Matrix 2.\n>> Perkalian tidak dapat dilakukan.");
+                                                                    }
+                                                                } else {
+                                                                    System.out.println("\n>> Jumlah kolom Matrix 1 tidak sama dengan jumlah baris Matrix 2.\n>> Perkalian tidak dapat dilakukan.");
+                                                                    pause();
+                                                                    cls();
+                                                                }
+                                                            }
+                                                        }
+                                                                break;
 
                                                     case "3":
                                                     case "BACK":
@@ -773,18 +1268,18 @@ public class Main {
                                             break;
 
                                         default:
-                                            System.out.println("Pilihan sub-menu tidak valid.");
+                                            System.out.println("Invalid.");
                                     }
                                 }
                                 break;
 
                             case "5":
                             case "BACK":
-                                matricesMenu = false;
+                                operationsMenu = false;
                                 break;
 
                             default:
-                                System.out.println("Pilihan sub-menu tidak valid.");
+                                System.out.println("Invalid.");
                         }
                     }
                     break;
