@@ -18,4 +18,4 @@ Matrix calculator adalah program yang dapat melakukan berbagai operasi dan manip
 
 ## Dokumentasi
 
-![](doc/b for bewe.jpeg)
+![](/doc/b for bewe.jpg)
