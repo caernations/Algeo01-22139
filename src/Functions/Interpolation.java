@@ -1,5 +1,6 @@
 package Functions;
 import Matrices.*;
+import Operations.*;
 import java.util.Scanner;
 
 public class Interpolation {
@@ -99,13 +100,15 @@ public class Interpolation {
 			}
 		}
 
+		double[][] matriksA = Multiplies.MultiplyMatrix(matriks, nilai);
+
 		double hasil = 0;
 
 		idx = 0;
 
 		for (int j = 0; j < 4; j++) {
 			for (int i = 0; i < 4; i++) {
-				hasil += (nilai[idx][0] * Math.pow(a, i) * Math.pow(b, j));
+				hasil += (matriksA[idx][0] * Math.pow(a, i) * Math.pow(b, j));
 				idx++;
 			}
 		}
