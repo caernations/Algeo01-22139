@@ -37,10 +37,11 @@ public class Echelon {
 				for (j = i + 1; j < loop; j++) {
 					if (matriks[j][i] != 0) {
 						SwapRow(matriks, i, j);
-						swapped = true;
 						penukaran++;
+						break;
 					}
 				}
+				swapped = true;
 				if (i == (loop-1) || j == (loop-1)) {
 					break;
 				}
