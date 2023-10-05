@@ -23,7 +23,7 @@ public class SPL {
                     return false;
                 }
                 else if (check[i][n-1] != 0) {
-                    System.out.println("gaada solusi");
+                    System.out.println("Tidak ada solusi.");
                     return false;
                 }
             }
