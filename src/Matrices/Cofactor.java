@@ -26,7 +26,7 @@ public class Cofactor {
             }
             minorBaris++;
         }
-		return Math.pow(-1, baris + kolom) * Determinant.CalcDeterminant(minor);
+		return Math.pow(-1, baris + kolom) * Determinant.CofactorExp(minor);
 	}
 
     public static double[][] MatricesCofactor(double[][] matriks) {

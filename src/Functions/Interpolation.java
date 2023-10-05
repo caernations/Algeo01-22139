@@ -1,14 +1,12 @@
 package Functions;
 import Matrices.*;
 import Operations.*;
-import java.util.Scanner;
 
 public class Interpolation {
 	public static void Polynomial(double[][] titik, double a) {
 		// input matriksnya berbentuk double[derajat+1][2]
 
 		int derajat = titik.length - 1;
-		Scanner scanner = new Scanner(System.in);
 
 		double[][] matriks = new double[derajat+1][derajat+2];
 

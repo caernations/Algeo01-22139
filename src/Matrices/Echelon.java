@@ -16,7 +16,7 @@ public class Echelon {
 	}
     }
 
-    public static double[][] RowEchelon(double[][] matriks) {
+    public static double[][] RowEchelon(double[][] matriks, int penukaran) {
 	int m = matriks.length;
 	int n = matriks[0].length;
 	int loop;
@@ -38,6 +38,7 @@ public class Echelon {
 					if (matriks[j][i] != 0) {
 						SwapRow(matriks, i, j);
 						swapped = true;
+						penukaran++;
 					}
 				}
 				if (i == (loop-1) || j == (loop-1)) {
@@ -72,7 +73,7 @@ public class Echelon {
 		loop = n;
 	}
 
-	matriks = RowEchelon(matriks);
+	matriks = RowEchelon(matriks, 0);
 
 	// bagian ngubah diagonal jadi satu
 	for (int i = 0; i < loop; i++) {
