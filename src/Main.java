@@ -1,5 +1,6 @@
 import java.util.*;
 
+import Matrices.Determinant;
 import Matrices.MatricesIO;
 import Matrices.PrintMatrices;
 import Matrices.ReadMatrices;
@@ -68,10 +69,7 @@ public class Main {
                             ░ 2. Subtraction (-)
                             ░ 3. Trace (tr)
                             ░ 4. Multiply (*)
-                            ░ 5. Transpose (T)
-                            ░ 6. Row Echelon
-                            ░ 7. Reduced Row Echelon
-                            ░ 8. Back
+                            ░ 5. Back
                             """);
 
                         System.out.print("░ >> Choose operation: ");
@@ -1278,72 +1276,6 @@ public class Main {
                                 break;
 
                             case "5":
-                            case "T":
-                            case "TRANSPOSE":
-                                boolean transposeInput = true;
-                                while(transposeInput) {
-                                    System.out.println("""
-
-                                        ▀█▀ █▀█ ▄▀█ █▄░█ █▀ █▀█ █▀█ █▀ █▀▀
-                                        ░█░ █▀▄ █▀█ █░▀█ ▄█ █▀▀ █▄█ ▄█ ██▄
-
-                                        ░ Source of Input:
-                                        ───────────────────
-
-                                        ░ 1. Keyboard
-                                        ░ 2. File
-                                        ░ 3. Back
-                                        """);
-                                    System.out.print("░ >> Choose: ");
-                                    String transposeInputChoice = scanner.nextLine().toUpperCase();
-
-                                    pause();
-                                    cls();
-
-                                    switch (transposeInputChoice){
-                                        case "1":
-                                        case "KEYBOARD":
-                                            System.out.println("""
-                                                
-                                                ▀█▀ █▀█ ▄▀█ █▄░█ █▀ █▀█ █▀█ █▀ █▀▀
-                                                ░█░ █▀▄ █▀█ █░▀█ ▄█ █▀▀ █▄█ ▄█ ██▄
-
-
-                                                """);
-                                            System.out.println("""
-                                                ──────────────────
-                                                ░  M A T R I X : ░
-                                                ──────────────────
-                                                """);
-                                            double[][] matrixE = ReadMatrices.Keyboard();
-        
-
-                                            break;
-                                        case "2":
-                                        case "FILE":
-                                            break;
-                                        case "3":
-                                        case "BACK":
-                                            transposeInput = false;
-                                            break;
-
-                                        default:
-                                            System.out.println("Invalid.");
-                                    }
-                                }
-                                break;
-
-                            case "6":
-                            case "ROW ECHELON":
-                                operationsMenu = false;
-                                break;
-
-                            case "7":
-                            case "REDUCED ROW ECHELON":
-                                operationsMenu = false;
-                                break;
-
-                            case "8":
                             case "BACK":
                                 operationsMenu = false;
                                 break;
@@ -1439,21 +1371,22 @@ public class Main {
                                                 """);
                                             double[] solutions = new double[matrix2Ai[0].length - 1];
                                             SPL.Gauss(matrix2Ai, solutions);
-
-                                            if (solutions != null) {
-                                                System.out.println("\n>> Solusi SPL:");
-                            
-                                                for (int i = 0; i < solutions.length; i++) {
-                                                    System.out.println("X" + (i + 1) + " = " + solutions[i]);
+                                                if (solutions != null) {
+                                                    System.out.println("\n>> Solusi SPL:");
+                                
+                                                    for (int i = 0; i < solutions.length; i++) {
+                                                        System.out.println("X" + (i + 1) + " = " + solutions[i]);
+                                                    }
+                                                    
                                                 }
-                                                
-                                            }
 
                                             PrintMatrices.Print(matrix2Ai);
                             
                                             pause();
                             
                                             System.out.println("""
+
+
                                                 █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
                                                 ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
                                                 """);
@@ -1831,6 +1764,30 @@ public class Main {
                                             SPL.MatriksBalikan(matrix2Ci);
                                             PrintMatrices.Print(matrix2Ci);
 
+                                            pause();
+
+                                            System.out.println("""
+
+
+                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                """);
+                                            System.out.print(">> ");
+                                            String saveChoice = scanner.nextLine().toUpperCase();
+                                            if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                System.out.print(">> Save as: ");
+                                                String outputFileName = scanner.nextLine();
+                                                StringBuilder result = new StringBuilder("Solusi SPL:\n");
+                                                
+                                                MatricesIO.SaveStringToFile(result.toString(), outputFileName);
+                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                
+                                            } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                System.out.println("Not saved.");
+                                            } else {
+                                                System.out.println("Invalid.");
+                                            }
+
                                             //save
 
                                             pause();
@@ -2041,7 +1998,6 @@ public class Main {
                                 while (determinantCEInput){
                                     System.out.println("""
 
-
                                         █▀▀ █▀█ █▀▀ ▄▀█ █▀▀ ▀█▀ █▀█ █▀█   █▀▀ ▀▄▀ █▀█ ▄▀█ █▄░█ █▀ █ █▀█ █▄░█
                                         █▄▄ █▄█ █▀░ █▀█ █▄▄ ░█░ █▄█ █▀▄   ██▄ █░█ █▀▀ █▀█ █░▀█ ▄█ █ █▄█ █░▀█
                                         
@@ -2066,7 +2022,7 @@ public class Main {
                                         case "1":
                                         case "KEYBOARD":
                                             System.out.println("""
-                                                
+
                                                 █▀▀ █▀█ █▀▀ ▄▀█ █▀▀ ▀█▀ █▀█ █▀█   █▀▀ ▀▄▀ █▀█ ▄▀█ █▄░█ █▀ █ █▀█ █▄░█
                                                 █▄▄ █▄█ █▀░ █▀█ █▄▄ ░█░ █▄█ █▀▄   ██▄ █░█ █▀▀ █▀█ █░▀█ ▄█ █ █▄█ █░▀█
                                                 
@@ -2075,6 +2031,42 @@ public class Main {
 
 
                                                 """);
+                                            double[][] matrix3Ai = ReadMatrices.Keyboard(); 
+                                            double determinantCE = Determinant.CofactorExp(matrix3Ai);
+
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
+                                                """);
+                                            System.out.println("Determinant = " + determinantCE);
+                                            pause();
+
+                                            System.out.println("""
+
+
+                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                """);
+                                            System.out.print(">> ");
+                                            String saveChoice = scanner.nextLine().toUpperCase();
+                                            if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                System.out.print(">> Save as: ");
+                                                String outputFileName = scanner.nextLine();
+                                                String detEIToSave = "Determinan:\n" + determinantCE;
+                                                
+                                                MatricesIO.SaveStringToFile(detEIToSave, outputFileName);
+                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                
+                                            } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                System.out.println("Not saved.");
+                                            } else {
+                                                System.out.println("Invalid.");
+                                            }
+
+                                            pause();
+                                            cls();
                                             break;
 
                                         case "2":
@@ -2089,6 +2081,55 @@ public class Main {
 
 
                                                 """);
+                                            System.out.print("░ >> Matrix file name: ");
+                                            String inputFileName1 = scanner.nextLine();
+                                            double[][] matrix3Aii = MatricesIO.FileToMatrix(inputFileName1);
+        
+                                            if (matrix3Aii != null) {
+                                                double resultDetEI = Determinant.CofactorExp(matrix3Aii);
+                            
+                                                if (!Double.isNaN(resultDetEI)) {
+
+                                                    System.out.println("""
+
+                                                        ──────────────────
+                                                        ░  M A T R I X : ░
+                                                        ──────────────────""");
+                                                    PrintMatrices.Print(matrix3Aii);
+                                                    System.out.print("""
+                                                        \n
+                                                        ─────────────────────
+                                                        ░    R E S U L T    ░
+                                                        ─────────────────────
+                                                        """);
+                                                    System.out.println(">> Determinant = " + resultDetEI);
+                                                    pause();
+                                                    System.out.println("""
+
+
+                                                        █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                        ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                        """);
+                                                    System.out.print(">> ");
+                                                    String saveChoiceF = scanner.nextLine().toUpperCase();
+                                                    if (saveChoiceF.equals("Y") || saveChoiceF.equals("YAY")) {
+                                                        System.out.print(">> Save as: ");
+                                                        String outputFileName = scanner.nextLine();
+                                                        String detEIToSave = "Determinan:\n" + resultDetEI;
+                                                        
+                                                        MatricesIO.SaveStringToFile(detEIToSave, outputFileName);
+                                                        System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                        
+                                                    } else if (saveChoiceF.equals("N") || saveChoiceF.equals("NAY")){
+                                                        System.out.println("Not saved.");
+                                                    } else {
+                                                        System.out.println("Invalid.");
+                                                    }
+
+                                                    pause();
+                                                    cls();
+                                                }
+                                            }
                                             break;
 
                                         case "3":
@@ -2141,12 +2182,47 @@ public class Main {
 
 
                                                 """);
+                                            double[][] matrix3Bi = ReadMatrices.Keyboard(); 
+                                            double determinantRR1 = Determinant.RowReduction(matrix3Bi);
+
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
+                                                """);
+                                            System.out.println("Determinant = " + determinantRR1);
+                                            pause();
+
+                                            System.out.println("""
+
+
+                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                """);
+                                            System.out.print(">> ");
+                                            String saveChoice = scanner.nextLine().toUpperCase();
+                                            if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                System.out.print(">> Save as: ");
+                                                String outputFileName = scanner.nextLine();
+                                                String detEIToSave = "Determinan:\n" + determinantRR1;
+                                                
+                                                MatricesIO.SaveStringToFile(detEIToSave, outputFileName);
+                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                
+                                            } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                System.out.println("Not saved.");
+                                            } else {
+                                                System.out.println("Invalid.");
+                                            }
+
+                                            pause();
+                                            cls();
                                             break;
 
                                         case "2":
                                         case "FILE":
                                             System.out.println("""
-                                                
 
                                                 █▀█ █▀▀ █▀▄ █░█ █▀▀ █▀▀ █▀▄   █▀█ █▀█ █░█░█
                                                 █▀▄ ██▄ █▄▀ █▄█ █▄▄ ██▄ █▄▀   █▀▄ █▄█ ▀▄▀▄▀
@@ -2156,6 +2232,56 @@ public class Main {
 
 
                                                 """);
+
+                                            System.out.print("░ >> Matrix file name: ");
+                                            String inputFileName2 = scanner.nextLine();
+                                            double[][] matrix3Bii = MatricesIO.FileToMatrix(inputFileName2);
+        
+                                            if (matrix3Bii != null) {
+                                                double resultDetRR = Determinant.RowReduction(matrix3Bii);
+                            
+                                                if (!Double.isNaN(resultDetRR)) {
+
+                                                    System.out.println("""
+
+                                                        ──────────────────
+                                                        ░  M A T R I X : ░
+                                                        ──────────────────""");
+                                                    PrintMatrices.Print(matrix3Bii);
+                                                    System.out.print("""
+                                                        \n
+                                                        ─────────────────────
+                                                        ░    R E S U L T    ░
+                                                        ─────────────────────
+                                                        """);
+                                                    System.out.println(">> Determinant = " + resultDetRR);
+                                                    pause();
+                                                    System.out.println("""
+
+
+                                                        █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                        ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                        """);
+                                                    System.out.print(">> ");
+                                                    String saveChoiceF = scanner.nextLine().toUpperCase();
+                                                    if (saveChoiceF.equals("Y") || saveChoiceF.equals("YAY")) {
+                                                        System.out.print(">> Save as: ");
+                                                        String outputFileName = scanner.nextLine();
+                                                        String detEIToSave = "Determinan:\n" + resultDetRR;
+                                                        
+                                                        MatricesIO.SaveStringToFile(detEIToSave, outputFileName);
+                                                        System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                        
+                                                    } else if (saveChoiceF.equals("N") || saveChoiceF.equals("NAY")){
+                                                        System.out.println("Not saved.");
+                                                    } else {
+                                                        System.out.println("Invalid.");
+                                                    }
+
+                                                    pause();
+                                                    cls();
+                                                }
+                                            }
                                             break;
 
                                         case "3":
