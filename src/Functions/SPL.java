@@ -4,33 +4,31 @@ import Operations.Multiplies;
 
 public class SPL {
     public static boolean CheckSolution(double[][] matrix) {
-        int cnt = 0;
-        int row = matrix.length;
-        int col = matrix[0].length;
-        boolean solusi = true;
+        // untuk ngecheck solusi dari input matriks yg berupa matriks augmented
+        int m = matrix.length;
+        int n = matrix[0].length;
 
-        //check tidak punya solusi dan solusi banyak
-        for (int i = 0; i < row; i++) {
-            cnt = 0;
-            for (int j = 0; j < col; j++) {
-                if (j != col - 1) {
-                    if (matrix[i][j] != 0) {
-                        cnt++;
-                    }
-                } else {
-                    if (cnt == 0 && matrix[i][j] != 0) {
-                        System.out.println("Matriks tidak memiliki solusi");
-                        solusi = false;
-                        break;
-                    } else if (cnt == 0 && matrix[i][j] == 0) {
-                        System.out.println("Matriks memiliki banyak solusi");
-                        solusi = false;
-                        break;
-                    }
+        double[][] check = Echelon.ReducedRowEchelon(matrix);
+        for (int i = 0; i < m; i++) {
+            boolean allzero = true;
+            for (int j = 0; j < n - 1; j++) {
+                if (check[i][j] != 0) {
+                    allzero = false;
+                    break;
+                }
+            }
+            if (allzero) {
+                if (check[i][n-1] == 0) {
+                    Parametrik(matrix);
+                    return false;
+                }
+                else if (check[i][n-1] != 0) {
+                    System.out.println("gaada solusi");
+                    return false;
                 }
             }
         }
-        return solusi;
+        return true;
     }
 
     public static void Gauss(double[][] matrix, double[] solutions) {
@@ -57,13 +55,16 @@ public class SPL {
 
     public static double[][] DeleteZeros(double[][] matrix) {
         int cnt = 0;
+        int m = matrix.length;
+        int n = matrix[0].length;
         int row = matrix.length;
         int col = matrix[0].length;
+        int kurang = 0;
 
         //Kalo di suatu row semua elemen nya adalah zero, maka row dihapus
-        for (int i = 0; i < row; i++) {
+        for (int i = 0; i < m; i++) {
             cnt = 0;
-            for (int j = 0; j < col; j++) {
+            for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == 0) {
                     cnt++;
                 }
@@ -75,9 +76,20 @@ public class SPL {
 
         //bikin matrix baru
         double[][] deleted = new double[row][col];
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                deleted[i][j] = matrix[i][j];
+        for (int i = 0; i < m; i++) {
+            cnt = 0;
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    cnt++;
+                }
+            }
+            if (cnt == col) {
+                kurang++;
+            }
+            else {
+                for (int k = 0; k < n; k++) {
+                    deleted[i - kurang][k] = matrix[i][k];
+                }
             }
         }
 
@@ -175,6 +187,159 @@ public class SPL {
         //Print solusi
         for (int i = 0; i < col - 1; i++) {
             System.out.println("X" + (i+1) + "= " + x[i]);
+        }
+    }
+
+    public static int FindOne(double[][] matrix, int a) {
+        int n = matrix[0].length;
+        int i;
+        for (i = 0; i < n; i++) {
+            if (matrix[a][i] == 1) {
+                return i;
+            }
+        }
+        return i;
+    }
+
+    public static double recursiveCalculation(int topLimit, int bottomLimit, int currentRow, int variableColumn, double[] resultArray, String[] expressionArray, double[][] matrix) {
+        int numRows = matrix.length;
+        double cachedValue = 0;
+        for (int k = topLimit; k > bottomLimit; k--) {
+            if ((resultArray[k] != 0 || !expressionArray[k].isEmpty()) && matrix[currentRow][k] != 0) {
+                int rowWithOne = numRows - 1;
+                while (matrix[rowWithOne][k] != 1) {
+                    rowWithOne--;
+                }
+
+                cachedValue = cachedValue + matrix[currentRow][k] * (matrix[rowWithOne][variableColumn])
+                        - matrix[currentRow][k] * recursiveCalculation(topLimit, FindOne(matrix, rowWithOne), rowWithOne, variableColumn, resultArray, expressionArray, matrix);
+            }
+        }
+        return cachedValue;
+    }
+
+    public static void Parametrik(double[][] matrix) {
+        int i, j, k;
+        double cachedResult;
+        boolean isRealZero;
+        boolean isTrivial;
+        double[] results = new double[matrix[0].length - 1];
+        char[] variables = new char[matrix[0].length - 1];
+        String[] expressions = new String[matrix[0].length - 1];
+        char currentVariable;
+
+        for (i = 0; i < matrix[0].length - 1; i++) {
+            results[i] = 0;
+            variables[i] = '/';
+            expressions[i] = "";
+        }
+
+        currentVariable = 'S';
+        matrix = DeleteZeros(matrix);
+
+        for (i = matrix.length - 1; i > -1; i--) {
+            cachedResult = matrix[i][matrix[0].length - 1];
+            for (j = FindOne(matrix, i) + 1; j < matrix[0].length - 1; j++) {
+                if (results[j] == 0) {
+                    isRealZero = true;
+                    for (k = j; k < matrix[0].length - 1; k++) {
+                        if (variables[k] != '/') {
+                            isRealZero = false;
+                        }
+                    }
+
+                    if (j > 0) {
+                        for (k = j - 1; k > -1; k--) {
+                            if (matrix[i][k] != 0) {
+                                isRealZero = false;
+                            }
+                        }
+                    }
+
+                    if (!isRealZero) {
+                        if (variables[j] == '/') {
+                            variables[j] = currentVariable;
+                            if (currentVariable == 'Z') {
+                                currentVariable = 'A';
+                            } else if (currentVariable == 'R') {
+                                currentVariable = 'a';
+                            } else {
+                                currentVariable += 1;
+                            }
+                        }
+                        double cachedConst = (-1) * matrix[i][j];
+                        cachedConst += recursiveCalculation(matrix[0].length - 2, FindOne(matrix, i), i, j, results, expressions, matrix);
+
+                        if (cachedConst > 0) {
+                            expressions[FindOne(matrix, i)] += String.format("+%.2f%c", cachedConst, variables[j]);
+                        } else if (cachedConst < 0) {
+                            expressions[FindOne(matrix, i)] += String.format("%.2f%c", cachedConst, variables[j]);
+                        }
+                    }
+                } else {
+                    cachedResult -= results[j] * matrix[i][j];
+                }
+            }
+            try {
+                results[FindOne(matrix, i)] = cachedResult;
+            } catch (Exception e) {
+                // Handle exception
+            }
+        }
+
+        isTrivial = true;
+        for (i = 0; i < matrix[0].length - 1; i++) {
+            if (results[i] != 0) {
+                isTrivial = false;
+            }
+        }
+
+        if (isTrivial) {
+            for (i = 0; i < matrix[0].length - 1; i++) {
+                System.out.print("x");
+                System.out.print(i + 1);
+                System.out.print(" = ");
+            }
+            System.out.print(0);
+            System.out.println(" or");
+        }
+
+        for (i = 0; i < matrix[0].length - 1; i++) {
+            System.out.print("x");
+            System.out.print(i + 1);
+            System.out.print(" = ");
+            if (results[i] == 0) {
+                isRealZero = true;
+                for (j = i; j < matrix[0].length - 1; j++) {
+                    if (variables[j] != '/') {
+                        isRealZero = false;
+                    }
+                }
+                if (!expressions[i].isEmpty()) {
+                    isRealZero = true;
+                }
+
+                if (!isRealZero) {
+                    if (variables[i] == '/') {
+                        variables[i] = currentVariable;
+                        if (currentVariable == 'Z') {
+                            currentVariable = 'A';
+                        } else if (currentVariable == 'R') {
+                            currentVariable = 'a';
+                        } else {
+                            currentVariable += 1;
+                        }
+                    }
+                    System.out.print(variables[i] + "");
+                }
+                if (isRealZero && expressions[i].isEmpty()) {
+                    System.out.print(results[i]);
+                }
+            } else {
+                System.out.print(results[i]);
+            }
+            System.out.print(expressions[i]);
+            System.out.print(", \n");
         }
     }
 }
