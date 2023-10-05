@@ -1,7 +1,4 @@
 package Matrices;
-import static Matrices.Determinant.CalcDeterminant;
-import static Matrices.Cofactor.SingleCofactor;
-import static Matrices.Transpose.TransposeMatrix;
 
 public class Inverse {
 
@@ -17,11 +14,11 @@ public class Inverse {
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                adj[i][j] = SingleCofactor(matrix, i, j);
+                adj[i][j] = Cofactor.SingleCofactor(matrix, i, j);
             }
         }
 
-        adj = TransposeMatrix(adj);
+        adj = Transpose.TransposeMatrix(adj);
         return adj;
     }
     public static double[][] Cofactor(double[][] matrix) {
@@ -29,7 +26,7 @@ public class Inverse {
             throw new IllegalArgumentException("Matriks harus memiliki jumlah baris & kolom yang sama untuk mencari inverse.");
         }
 
-        if (CalcDeterminant(matrix) == 0) {
+        if (Determinant.CofactorExp(matrix) == 0) {
             System.out.println("Matriks dengan determinan 0 tidak memiliki invers");
             return matrix;
         }
@@ -42,7 +39,7 @@ public class Inverse {
 
         for (int i=0; i<row; i++) {
             for (int j = 0; j < col; j++) {
-                inv[i][j] = (1 / CalcDeterminant(matrix)) * temp[i][j];
+                inv[i][j] = (1 / Determinant.CofactorExp(matrix)) * temp[i][j];
             }
         }
         return inv;

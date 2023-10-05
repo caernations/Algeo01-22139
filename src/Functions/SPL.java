@@ -37,7 +37,7 @@ public class SPL {
         //solutions x1, x2, ... , xk ada distore di array solutions. BELUM TERMASUK PRINT
         int row = matrix.length;
         int col = matrix[0].length;
-        matrix = Echelon.RowEchelon(matrix);
+        matrix = Echelon.RowEchelon(matrix, 0);
 
         //kalo punya solusi maka kalkulasi solusi
         if (CheckSolution(matrix)) {
