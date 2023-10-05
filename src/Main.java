@@ -1475,7 +1475,7 @@ public class Main {
 
                                             System.out.println("""
 
-                                            
+
                                                 █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
                                                 ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
                                                 """);
@@ -1841,6 +1841,7 @@ public class Main {
                             
                                             // save
                                             pause();
+                                            cls();
                                             break;
 
                                         case "3":
@@ -2728,6 +2729,43 @@ public class Main {
 
 
                                                 """);
+                                                double[][] matrix6Ai = ReadMatrices.Keyboard(); 
+                                                System.out.println("Masukkan titik x yang ingin ditaksir");
+                                                double a = scanner.nextDouble(); 
+    
+                                                System.out.print("""
+                                                    \n
+                                                    ─────────────────────
+                                                    ░    R E S U L T    ░
+                                                    ─────────────────────
+                                                    """);
+                                                System.out.println("Hasil taksirannya adalah " + Double.toString(Interpolation.Polynomial(matrix6Ai, a)));
+                                                pause();
+    
+                                                System.out.println("""
+    
+    
+                                                    █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                    ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                    """);
+                                                System.out.print(">> ");
+                                                String saveChoice = scanner.nextLine().toUpperCase();
+                                                if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                    System.out.print(">> Save as: ");
+                                                    String outputFileName = scanner.nextLine();
+                                                    String detEIToSave = "Hasil taksirannya adalah " + Double.toString(Interpolation.Polynomial(matrix6Ai, a));
+                                                    
+                                                    MatricesIO.SaveStringToFile(detEIToSave, outputFileName);
+                                                    System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                    
+                                                } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                    System.out.println("Not saved.");
+                                                } else {
+                                                    System.out.println("Invalid.");
+                                                }
+    
+                                                pause();
+                                                cls();   
                                             break;
 
                                         case "2":
@@ -2742,6 +2780,31 @@ public class Main {
 
 
                                                 """);
+                                                System.out.print("░ >> Matrix file name: ");
+                                            String inputFileName1 = scanner.nextLine();
+                                            double[][] matrix6Aii = MatricesIO.FileToMatrix(inputFileName1);
+        
+                                            if (matrix6Aii != null) {
+                                                double resultPolinom = Interpolation.Polynomial(matrix6Aii, a);
+                            
+                                                if (!Double.isNaN(resultPolinom)) {
+
+                                                    System.out.println("""
+
+                                                        ──────────────────
+                                                        ░  M A T R I X : ░
+                                                        ──────────────────""");
+                                                    PrintMatrices.Print(matrix6Aii);
+                                                    System.out.print("""
+                                                        \n
+                                                        ─────────────────────
+                                                        ░    R E S U L T    ░
+                                                        ─────────────────────
+                                                        """);
+                                                    System.out.println("Hasil taksirannya adalah " + resultPolinom);
+                                                    pause();
+                                                }
+                                            }
                                             break;
 
                                         case "3":
@@ -2831,6 +2894,44 @@ public class Main {
 
 
                                                 """);
+                                                double[][] matrix6Ai = ReadMatrices.Keyboard(); 
+                                            System.out.println("Masukkan titik x dan y yang ingin ditaksir");
+                                            double a = scanner.nextDouble(); 
+                                            double b = scanner.nextDouble(); 
+
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
+                                                """);
+                                            System.out.println("Hasil taksirannya adalah " + Interpolation.BicubicSpline(matrix6Ai, a, b));
+                                            pause();
+
+                                            System.out.println("""
+
+
+                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                """);
+                                            System.out.print(">> ");
+                                            String saveChoice = scanner.nextLine().toUpperCase();
+                                            if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                System.out.print(">> Save as: ");
+                                                String outputFileName = scanner.nextLine();
+                                                String detEIToSave = "Hasil taksirannya adalah " + Interpolation.BicubicSpline(matrix6Ai, a, b);
+                                                
+                                                MatricesIO.SaveStringToFile(detEIToSave, outputFileName);
+                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                
+                                            } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                System.out.println("Not saved.");
+                                            } else {
+                                                System.out.println("Invalid.");
+                                            }
+
+                                            pause();
+                                            cls();
                                             break;
 
                                         case "2":
@@ -2845,6 +2946,31 @@ public class Main {
 
 
                                                 """);
+                                                System.out.print("░ >> Matrix file name: ");
+                                            String inputFileName1 = scanner.nextLine();
+                                            double[][] matrix6Aii = MatricesIO.FileToMatrix(inputFileName1);
+        
+                                            if (matrix6Aii != null) {
+                                                double resultBicubicI = Interpolation.BicubicSpline(matrix6Aii, a, b);
+                            
+                                                if (!Double.isNaN(resultBicubicI)) {
+
+                                                    System.out.println("""
+
+                                                        ──────────────────
+                                                        ░  M A T R I X : ░
+                                                        ──────────────────""");
+                                                    PrintMatrices.Print(matrix6Aii);
+                                                    System.out.print("""
+                                                        \n
+                                                        ─────────────────────
+                                                        ░    R E S U L T    ░
+                                                        ─────────────────────
+                                                        """);
+                                                    System.out.println("Hasil taksirannya adalah " + resultBicubicI);
+                                                    pause();
+                                                }
+                                            }
                                             break;
 
                                         case "3":
@@ -2911,8 +3037,7 @@ public class Main {
                                         ───────────────────
 
                                         ░ 1. Keyboard
-                                        ░ 2. File
-                                        ░ 3. Back
+                                        ░ 2. Back
                                         """);
 
                                     System.out.print("░ >> Choose: ");
@@ -2934,21 +3059,47 @@ public class Main {
 
 
                                                 """);
-                                            break;
+                                                double[][] matrix6Ai = ReadMatrices.Keyboard(); 
+                                            System.out.println("Masukkan titik x dan y yang ingin ditaksir");
+                                            double a = scanner.nextDouble(); 
+                                            double b = scanner.nextDouble(); 
 
-                                        case "2":
-                                        case "FILE":
-                                            System.out.println("""
-                                                
-                                                █▀▄▀█ █░█ █░░ ▀█▀ █ █▀█ █░░ █▀▀   █░░ █ █▄░█ █▀▀ ▄▀█ █▀█
-                                                █░▀░█ █▄█ █▄▄ ░█░ █ █▀▀ █▄▄ ██▄   █▄▄ █ █░▀█ ██▄ █▀█ █▀▄
-                                                
-                                                █▀█ █▀▀ █▀▀ █▀█ █▀▀ █▀ █▀ █ █▀█ █▄░█
-                                                █▀▄ ██▄ █▄█ █▀▄ ██▄ ▄█ ▄█ █ █▄█ █░▀█
-
-
+                                            System.out.print("""
+                                                \n
+                                                ─────────────────────
+                                                ░    R E S U L T    ░
+                                                ─────────────────────
                                                 """);
+                                            System.out.println("Hasil taksirannya adalah " + Interpolation.BicubicSpline(matrix6Ai, a, b));
+                                            pause();
+
+                                            System.out.println("""
+
+
+                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                """);
+                                            System.out.print(">> ");
+                                            String saveChoice = scanner.nextLine().toUpperCase();
+                                            if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                System.out.print(">> Save as: ");
+                                                String outputFileName = scanner.nextLine();
+                                                String detEIToSave = "Hasil taksirannya adalah " + Interpolation.BicubicSpline(matrix6Ai, a, b);
+                                                
+                                                MatricesIO.SaveStringToFile(detEIToSave, outputFileName);
+                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                
+                                            } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                System.out.println("Not saved.");
+                                            } else {
+                                                System.out.println("Invalid.");
+                                            }
+
+                                            pause();
+                                            cls();
                                             break;
+
+                                        
 
                                         case "3":
                                         case "BACK":
