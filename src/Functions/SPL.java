@@ -98,20 +98,22 @@ public class SPL {
 
     public static void GaussJordan(double[][] matrix, double[] solutions) {
         //solutions x1, x2, ... , xk ada distore di array solutions. BELUM TERMASUK PRINT
+        matrix = DeleteZeros(Echelon.ReducedRowEchelon(matrix));
         int row = matrix.length;
         int col = matrix[0].length;
-        matrix = DeleteZeros(Echelon.ReducedRowEchelon(matrix));
 
-        double sum = 0;
-        solutions[col - 2] = matrix[row - 1][col - 1] / matrix[row - 1][col - 2];
+        if (CheckSolution(matrix)){
+            double sum = 0;
+            solutions[col - 2] = matrix[row - 1][col - 1] / matrix[row - 1][col - 2];
 
-        for (int i = 2; i < row + 1; i++) {
-            sum = 0;
-            for (int j = col - i; j < col - 1; j++) {
-                sum += matrix[row - i][j] * solutions[j];
+            for (int i = 2; i < row + 1; i++) {
+                sum = 0;
+                for (int j = col - i; j < col - 1; j++) {
+                    sum += matrix[row - i][j] * solutions[j];
+                }
+
+                solutions[col - i - 1] = (matrix[row - i][col - 1] - sum) / matrix[row - i][row - i];
             }
-
-            solutions[col - i - 1] = (matrix[row - i][col - 1] - sum) / matrix[row - i][row - i];
         }
     }
 

@@ -1906,6 +1906,31 @@ public class Main {
                                             SPL.Cramer(matrix2Di);
                             
                                             pause();
+
+                                            System.out.println("""
+
+
+                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                """);
+                                            System.out.print(">> ");
+                                            String saveChoice = scanner.nextLine().toUpperCase();
+                                            if (saveChoice.equals("Y") || saveChoice.equals("YAY")) {
+                                                System.out.print(">> Save as: ");
+                                                String outputFileName = scanner.nextLine();
+                                                String cramerToSave = "Solusi SPL:\n" + matrix2Di;
+                                                
+                                                MatricesIO.SaveStringToFile(cramerToSave, outputFileName);
+                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                
+                                            } else if (saveChoice.equals("N") || saveChoice.equals("NAY")){
+                                                System.out.println("Not saved.");
+                                            } else {
+                                                System.out.println("Invalid.");
+                                            }
+
+                                            pause();
+                                            cls();
                                             break;
 
                                         case "2":
@@ -1948,8 +1973,32 @@ public class Main {
                             
                                             SPL.Cramer(matrix2Dii);
                             
-                                            // save
                                             pause();
+
+                                            System.out.println("""
+
+
+                                                █▀ ▄▀█ █░█ █▀▀  ▀█   ▄▀ █▄█ ▄▀█ █▄█   ░░▄▀   █▄░█ ▄▀█ █▄█ ▀▄
+                                                ▄█ █▀█ ▀▄▀ ██▄  ░▄   ▀▄ ░█░ █▀█ ░█░   ▄▀░░   █░▀█ █▀█ ░█░ ▄▀
+                                                """);
+                                            System.out.print(">> ");
+                                            String saveChoicei = scanner.nextLine().toUpperCase();
+                                            if (saveChoicei.equals("Y") || saveChoicei.equals("YAY")) {
+                                                System.out.print(">> Save as: ");
+                                                String outputFileName = scanner.nextLine();
+                                                String cramerToSave = "Hasil:\n" + matrix2Dii;
+                                                
+                                                MatricesIO.SaveStringToFile(cramerToSave, outputFileName);
+                                                System.out.println(">> Saved as " + outputFileName + "!\n");
+                                                
+                                            } else if (saveChoicei.equals("N") || saveChoicei.equals("NAY")){
+                                                System.out.println("Not saved.");
+                                            } else {
+                                                System.out.println("Invalid.");
+                                            }
+
+                                            pause();
+                                            cls();
                                             break;
 
                                         case "3":
